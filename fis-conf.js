@@ -6,7 +6,7 @@ fis.hook('commonjs',{
 	extList: ['.js', '.jsx', '.es', '.ts', '.tsx']
 });
 
-fis.match('/{components,widget,pages}/**.js', {
+fis.match('/{components,widget,pages}/**.{js,jsx}', {
     isMod: true,
     useSameNameRequire:true
 });
@@ -20,6 +20,13 @@ fis.match('**.scss', {
     parser: fis.plugin('node-sass', {
         
     })
+});
+// 编译所有后缀为 jsx 的文件为 js
+fis.match('{*.jsx,*:jsx}', {
+    parser: fis.plugin('reactjs', {
+        sourceMaps: true
+    }),
+    rExt: '.js'
 });
 // 添加css和image加载支持
 fis.match('*.{js,jsx,ts,tsx,es}', {

@@ -11,7 +11,7 @@ var List = React.createclassName({
                         </a> : '';
             return (
                 <li className={sItemclass}>
-                        <!-- 文章封面 -->
+                        //文章封面
                         {sWrapImg}
                         <div>
                             <p className="list-top">
@@ -47,9 +47,9 @@ var List = React.createclassName({
 
         return (
             <div id="list-container">
-                <!-- 文章分类 -->
+                //文章分类
                 <Category type="type" aCate="cates" />
-                <!-- 文章列表 -->
+                //文章列表
                 <ul className="article-list top-notes">
                     {aArticle}
                 </ul>

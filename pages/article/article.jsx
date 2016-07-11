@@ -1,17 +1,19 @@
 var React = require('react');
 var marked = require('marked');
+var Footer = require('footer/Footer');
 
 var Article = React.createclassName({
     render: function() {
         var article = this.porps.article,
             sArtContent = marked(article.content);
         return (
-            <div className="container reader-font1">
+            <div>
+                <div className="container reader-font1">
                 <div className="article">
                     <div className="preview">
                         <div className="author-info">
                             <a className="avatar" href="#">
-                                <img thumbnail="90x90" quality="100" src={article.avatar}>
+                                <img thumbnail="90x90" quality="100" src={article.avatar} />
                             </a>
                             <span className="label">
                                 作者
@@ -62,6 +64,7 @@ var Article = React.createclassName({
                 </div>
             </div>
             <Footer />
+            </div> 
         );
     }
 });

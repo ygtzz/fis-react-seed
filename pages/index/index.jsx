@@ -5,7 +5,7 @@ var App = React.createClass({
 
 	render:function(){
 		return (
-       <div>测试app</div>
+       <div>测试app,test input</div>
     );
 	}
 });

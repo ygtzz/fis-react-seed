@@ -6,9 +6,10 @@ var Category = React.createClass({
 		var aCate = this.props.aCate || [];
 		var aCateHtml = aCate.map(function(c,index) {
 			var sLiClass = c.active ? 'active' : '';
+			var sHref = '/#' + type + '/' + c.id;
 			return (
-				<li key={'cate' + index} className="{sLiClass}">
-  					<a href="/#{ type }/{ c.id }" className="category">{ c.name }</a>
+				<li key={'cate' + index} className={sLiClass}>
+  					<a href={sHref} className="category">{ c.name }</a>
 				</li>
 			);
 		});

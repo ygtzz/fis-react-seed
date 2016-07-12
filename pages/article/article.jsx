@@ -1,10 +1,20 @@
 var React = require('react');
 var marked = require('marked');
-var Footer = require('footer/Footer');
+var Footer = require('footer/footer');
+var service = require("mock/service.js");
 
-var Article = React.createclassName({
+var Article = React.createClass({
+    getInitialState: function() {
+        return {
+            article:{}  
+        };
+    },
+    componentWillReceiveProps: function(nextProps,nextState) {
+        var id = nextProps.articleid;
+        this.getArticleDetail(id);
+    },
     render: function() {
-        var article = this.porps.article,
+        var article = this.state.article,
             sArtContent = marked(article.content);
         return (
             <div>
@@ -66,6 +76,12 @@ var Article = React.createclassName({
             <Footer />
             </div> 
         );
+    },
+    getArticleDetail : function(id){
+        var self = this;
+        var article = service.getArticleDetail(id,function(article){
+            self.setState({article:article});
+        })
     }
 });
 

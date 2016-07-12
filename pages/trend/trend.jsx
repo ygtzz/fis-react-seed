@@ -7,7 +7,7 @@ var Trend = React.createClass({
     render: function() {
         var type = this.props.type;
         var cate = this.props.cate;
-        console.log('trend type ' + type + ' cate ' + cate);
+        
         return (
             <div>
                 <div className="recommended">

@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDom = require('react-dom');
 var Trend = require('pages/trend/trend.jsx');
+var Article = require('pages/article/article.jsx');
 var Router = require('director').Router;
 var PubSub = require('pubsub');
 var router = new Router();
@@ -24,30 +25,41 @@ var App = React.createClass({
 		PubSub.subscribe(oEventType.articleId,this.fArticleIdchange);
 		PubSub.subscribe(oEventType.currentView,this.fCurrentViewchange);
 		PubSub.subscribe(oEventType.type,this.fTypeChange);
-		PubSub.subscribe(oEventType.cate,this.fCatechange);
+		PubSub.subscribe(oEventType.cate,this.fCateChange);
 	},
 	render: function() {
+		var oView = {};
+		var sArtId = this.state.article_id;
+		console.log('artid ' + sArtId);
+		if(sArtId){
+			oView = <Article articleid={sArtId} />
+		}
+		else{
+			oView = <Trend type={this.state.type} cate={this.state.cate} />
+		}
+
 		return (
-			<Trend type={this.state.type} cate={this.state.cate} />
+			<div>
+				{oView}
+			</div>
 		);
 	},
-	fArticleIdchange:function(article_id){
+	fArticleIdchange:function(evt,article_id){
 		this.setState({
 			article_id:article_id
 		});
 	},
-	fCurrentViewChange: function(currentView){
+	fCurrentViewChange: function(evt,currentView){
 		this.setState({
 			currentView:currentView
 		});
 	},
-	fTypeChange: function(type){
-		console.log(type);
+	fTypeChange: function(evt,type){
 		this.setState({
 			type:type
 		});
 	},
-	fCateChange: function(cate){
+	fCateChange: function(evt,cate){
 		this.setState({
 			cate:cate
 		});
@@ -79,6 +91,7 @@ router.on('/subscribe/:cate', function (cate){
 router.on('/p/:id', function (id){
 	var self = this;
     require.async('pages/article/article.jsx', function(pageComponent){
+    	console.log('id ' + id);
     	PubSub.publish(oEventType.articleId, id);
     	PubSub.publish(oEventType.currentView,'home');
     });
@@ -102,7 +115,6 @@ router.init('/hot/now');
 //文章列表页通用处理
 function listHandler(view,type,cate){
     require.async('pages/trend/trend.jsx', function(pageComponent){
-    	console.log('type ' + type + ' cate ' + cate + ' view ' + view);
     	PubSub.publish(oEventType.type,type);
     	PubSub.publish(oEventType.cate,cate);
     	PubSub.publish(oEventType.articleId,'');

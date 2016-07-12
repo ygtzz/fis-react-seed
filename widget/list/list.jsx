@@ -10,9 +10,10 @@ var List = React.createClass({
             aArticle:[]
         }
     },
-    componentDidMount:function(){
-        var type = this.props.type;
-        var cate = this.props.cate;
+    componentWillReceiveProps: function(nextProps,nextState) {
+        var type = nextProps.type;
+        var cate = nextProps.cate;
+        console.log('list type ' + type + ' cate ' + cate);
         this.getCateList(type,cate),
         this.getArticleList(type,cate);
     },
@@ -23,14 +24,15 @@ var List = React.createClass({
                         <a className="wrap-img" href="#p/{ art.article_id }">
                             <img src = {art.wrap_img} alt="300" />
                         </a> : '';
-
+            var sArtHref = '#p/' + art.article_id,
+                sAuthorHref = '#users/' + art.author_id;
             return (
                 <li key={'art' + index} className={sItemclass}>
                         {/*文章封面*/}
                         {sWrapImg}
                         <div>
                             <p className="list-top">
-                                <a className="author-name blue-link" href="#users/{ art.author_id }">
+                                <a className="author-name blue-link" href={sAuthorHref}>
                                     { art.author }
                                 </a>
                                 <em>·</em>
@@ -39,18 +41,18 @@ var List = React.createClass({
                                 </span>
                             </p>
                             <h4 className="title">
-                                <a  href="#p/{art.article_id}">
+                                <a href={sArtHref}>
                                     { art.title }
                                 </a>
                             </h4>
-                            <a className="avatar maleskine-author" href="#users/{ art.author_id }">
+                            <a className="avatar maleskine-author" href={sAuthorHref}>
                                 <img src = {art.avatar} />
                             </a>
                             <div className="list-footer">
-                                <a  href="#p/{art.article_id}">
+                                <a  href={sArtHref}>
                                     阅读 {art.read}
                                 </a>
-                                <a  href="#p/{art.article_id}">
+                                <a  href={sArtHref}>
                                     · 评论 {art.comment}
                                 </a>
                                 · 喜欢 {art.like}

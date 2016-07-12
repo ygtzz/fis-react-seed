@@ -16,10 +16,11 @@ var DateTime = React.createClass({
         }else{
             text = "一年以前";
         }
+        
         return (
-            <div>
+            <span>
                 {text}
-            </div>
+            </span>
         );
     }
 });

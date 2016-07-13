@@ -4,13 +4,8 @@ var Trend = require('pages/trend/trend.jsx');
 var Article = require('pages/article/article.jsx');
 var Router = require('director').Router;
 var PubSub = require('pubsub');
+var oEventType = require('eventType/eventType');
 var router = new Router();
-var oEventType = {
-	'cate':'catechange',
-	'type':'typechange',
-	'currentView':'currentViewchange',
-	'articleId':'articleIdchange'
-};
 
 var App = React.createClass({
 	getInitialState: function() {
@@ -22,20 +17,19 @@ var App = React.createClass({
 	    }
 	},
 	componentDidMount: function(){
-		PubSub.subscribe(oEventType.articleId,this.fArticleIdchange);
-		PubSub.subscribe(oEventType.currentView,this.fCurrentViewchange);
+		PubSub.subscribe(oEventType.articleId,this.fArticleIdChange);
+		PubSub.subscribe(oEventType.currentView,this.fCurrentViewChange);
 		PubSub.subscribe(oEventType.type,this.fTypeChange);
 		PubSub.subscribe(oEventType.cate,this.fCateChange);
 	},
 	render: function() {
 		var oView = {};
-		var sArtId = this.state.article_id;
-		console.log('artid ' + sArtId);
-		if(sArtId){
-			oView = <Article articleid={sArtId} />
+		var sCurrentView = this.state.currentView;
+		if(sCurrentView === 'article'){
+			oView = <Article articleid={this.state.article_id} />
 		}
 		else{
-			oView = <Trend type={this.state.type} cate={this.state.cate} />
+			oView = <Trend type={this.state.type} cate={this.state.cate} currentView={this.state.currentView} />
 		}
 
 		return (
@@ -44,7 +38,7 @@ var App = React.createClass({
 			</div>
 		);
 	},
-	fArticleIdchange:function(evt,article_id){
+	fArticleIdChange:function(evt,article_id){
 		this.setState({
 			article_id:article_id
 		});
@@ -91,9 +85,8 @@ router.on('/subscribe/:cate', function (cate){
 router.on('/p/:id', function (id){
 	var self = this;
     require.async('pages/article/article.jsx', function(pageComponent){
-    	console.log('id ' + id);
+    	PubSub.publish(oEventType.currentView,'article');
     	PubSub.publish(oEventType.articleId, id);
-    	PubSub.publish(oEventType.currentView,'home');
     });
 })
 /*错误页*/
@@ -117,7 +110,6 @@ function listHandler(view,type,cate){
     require.async('pages/trend/trend.jsx', function(pageComponent){
     	PubSub.publish(oEventType.type,type);
     	PubSub.publish(oEventType.cate,cate);
-    	PubSub.publish(oEventType.articleId,'');
     	PubSub.publish(oEventType.currentView,view);
     });
 }

@@ -2,30 +2,35 @@ var React = require('react');
 var DateTime = require('filter/datetime');
 var Category = require('category/category.jsx');
 var service = require('mock/service.js');
+var oEventType = require('eventType/eventType');
 
 var List = React.createClass({
     getInitialState: function () {
+        console.log('list getInitialState');
         return {
             aCate: [],
             aArticle:[]
         }
     },
     componentWillReceiveProps: function(nextProps,nextState) {
+        console.log('list componentWillReceiveProps');
         var type = nextProps.type;
         var cate = nextProps.cate;
-        console.log('list type ' + type + ' cate ' + cate);
-        this.getCateList(type,cate),
-        this.getArticleList(type,cate);
+        var currentView = nextProps.currentView;
+        if(currentView !== 'article'){
+            this.getCateList(type,cate),
+            this.getArticleList(type,cate);
+        }
     },
     render: function() {
         var aArticleHtml = this.state.aArticle.map(function(art,index) {
-            var sItemclass = art.wrap_img ? 'have-img' : '';
+            var sItemclass = art.wrap_img ? 'have-img' : '',
+                sArtHref = '#p/' + art.article_id,
+                sAuthorHref = '#users/' + art.author_id;
             var sWrapImg = art.wrap_img ? 
-                        <a className="wrap-img" href="#p/{ art.article_id }">
+                        <a className="wrap-img" href={sArtHref}>
                             <img src = {art.wrap_img} alt="300" />
                         </a> : '';
-            var sArtHref = '#p/' + art.article_id,
-                sAuthorHref = '#users/' + art.author_id;
             return (
                 <li key={'art' + index} className={sItemclass}>
                         {/*文章封面*/}

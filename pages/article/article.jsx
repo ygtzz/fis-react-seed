@@ -9,13 +9,16 @@ var Article = React.createClass({
             article:{}  
         };
     },
+    componentWillMount: function() {  
+        this.getArticleDetail(this.props.articleid);
+    },
     componentWillReceiveProps: function(nextProps,nextState) {
         var id = nextProps.articleid;
         this.getArticleDetail(id);
     },
     render: function() {
-        var article = this.state.article,
-            sArtContent = marked(article.content);
+        var article = this.state.article;
+        var sArtContent = marked(article.content || '');
         return (
             <div>
                 <div className="container reader-font1">
@@ -67,8 +70,7 @@ var Article = React.createClass({
                                 喜欢{article.like}
                             </span>
                         </div>
-                        <div className="show-content">
-                            {sArtContent}
+                        <div className="show-content" dangerouslySetInnerHTML={{__html: sArtContent}}>
                         </div>
                     </div>
                 </div>

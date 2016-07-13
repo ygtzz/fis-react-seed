@@ -4,10 +4,18 @@ var Footer = require('footer/footer.jsx');
 var Search = require('search/search.jsx');
 
 var Trend = React.createClass({
+    getInitialState: function() {
+        console.log('trend getInitialState');
+        return {
+              type: '',
+              cate: '',
+              currentView: ''
+        };
+    },
     render: function() {
         var type = this.props.type;
         var cate = this.props.cate;
-        
+        var currentView = this.props.currentView;
         return (
             <div>
                 <div className="recommended">
@@ -44,7 +52,7 @@ var Trend = React.createClass({
                         </ul>
                     </div>
                     {/*文章列表*/}
-                    <List type={type} cate={cate} />
+                    <List type={type} cate={cate} currentView={currentView} />
                 </div>
                 <Footer />
             </div>

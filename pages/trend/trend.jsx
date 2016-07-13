@@ -8,6 +8,7 @@ var Trend = React.createClass({
         var type = this.props.type;
         var cate = this.props.cate;
         var currentView = this.props.currentView;
+        var pubsub = this.props.pubsub;
         return (
             <div>
                 <div className="recommended">
@@ -39,12 +40,12 @@ var Trend = React.createClass({
                             <img className="hide loader-tiny" src="/static/widget/list/img/tiny.gif"
                             alt="Tiny" />
                             <li className="search">  
-                                <Search />             
+                                <Search pubsub={pubsub}/>             
                             </li>
                         </ul>
                     </div>
                     {/*文章列表*/}
-                    <List type={type} cate={cate} currentView={currentView} />
+                    <List type={type} cate={cate} currentView={currentView} pubsub={pubsub} />
                 </div>
                 <Footer />
             </div>

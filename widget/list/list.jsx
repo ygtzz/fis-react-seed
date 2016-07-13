@@ -26,6 +26,10 @@ var List = React.createClass({
         var currentView = nextProps.currentView;
         this.fSetData(type,cate,currentView);
     },
+    componentDidMount:function(){
+        console.log('list componentDidMount');
+        this.props.pubsub.subscribe(oEventType.search,this.searchArticles);
+    },
     render: function() {
         var aArticleHtml = this.state.aArticle.map(function(art,index) {
             var sItemclass = art.wrap_img ? 'have-img' : '',
@@ -136,7 +140,7 @@ var List = React.createClass({
         })
     },
     /*搜索文章列表*/
-    searchArticles: function(keyword){
+    searchArticles: function(evt,keyword){
         var self = this;
         service.searchArticles(keyword,function(articles){
             self.setState({aArticle: articles});

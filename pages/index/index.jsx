@@ -29,7 +29,7 @@ var App = React.createClass({
 			oView = <Article articleid={this.state.article_id} />
 		}
 		else{
-			oView = <Trend type={this.state.type} cate={this.state.cate} currentView={this.state.currentView} />
+			oView = <Trend type={this.state.type} cate={this.state.cate} currentView={this.state.currentView} pubsub={PubSub} />
 		}
 
 		return (

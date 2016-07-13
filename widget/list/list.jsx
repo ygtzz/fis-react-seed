@@ -12,15 +12,19 @@ var List = React.createClass({
             aArticle:[]
         }
     },
+    componentWillMount:function(){
+        console.log('list componentWillMount');
+        var type = this.props.type;
+        var cate = this.props.cate;
+        var currentView = this.props.currentView;
+        this.fSetData(type,cate,currentView);
+    },
     componentWillReceiveProps: function(nextProps,nextState) {
         console.log('list componentWillReceiveProps');
         var type = nextProps.type;
         var cate = nextProps.cate;
         var currentView = nextProps.currentView;
-        if(currentView !== 'article'){
-            this.getCateList(type,cate),
-            this.getArticleList(type,cate);
-        }
+        this.fSetData(type,cate,currentView);
     },
     render: function() {
         var aArticleHtml = this.state.aArticle.map(function(art,index) {
@@ -77,6 +81,12 @@ var List = React.createClass({
                 </ul>
             </div>
         );
+    },
+    fSetData: function(type,cate,currentView){
+        if(currentView !== 'article'){
+            this.getCateList(type,cate),
+            this.getArticleList(type,cate);
+        }
     },
     /*获取分类列表*/
     getCateList : function(type,cate){

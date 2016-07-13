@@ -4,14 +4,6 @@ var Footer = require('footer/footer.jsx');
 var Search = require('search/search.jsx');
 
 var Trend = React.createClass({
-    getInitialState: function() {
-        console.log('trend getInitialState');
-        return {
-              type: '',
-              cate: '',
-              currentView: ''
-        };
-    },
     render: function() {
         var type = this.props.type;
         var cate = this.props.cate;

@@ -93,25 +93,33 @@ fis.media('prod')
         packTo: '/static/coms/coms.js'
     })
     .match('/components/mod/mod.js', {
-        packOrder: -100
+        packTo: false
     })
-    .match('/components/vue/vue.js', {
+    .match('/components/**/react.js', {
         packTo:false,
-        url:'/components/vue/vue.min.js'
+        release:true,
+        useHash:false,
+        url:'/static/coms/react.min.js'
     })
-    .match('/components/vue/vue.min.js', {
-        moduleId: 'components/vue/vue'
+    .match('/components/react/react.min.js', {
+        moduleId: 'components/react/react',
+        packTo: false,
+        useHash:false,
+        release:'/static/coms/react.min.js'
+    })
+    .match('/components/**/{react-with-addons,react-dom-server,react-min}.js', {
+        release:false
     })
     .match('/widget/**.{css,scss}', {
         packTo: '/static/widget/widget.css'
     })
-    .match('/widget/(**).js', {
+    .match('/widget/(**).{js,jsx}', {
         packTo: '/static/widget/widget.js'
     })
     .match('/pages/(**)/(*).{css,scss}', {
         packTo:'/static/pages/page.css'
     })
-    .match('/pages/(**)/(*).js', {
+    .match('/pages/(**)/(*).{js,jsx}', {
         packTo:'/static/pages/page.js'
     })
     // .match('/static/**.{css,scss}', {

@@ -4,7 +4,11 @@ var Trend = require('pages/trend/trend.jsx');
 var Article = require('pages/article/article.jsx');
 var PubSub = require('pubsub');
 var oEventType = require('eventType/eventType');
-var Router = require('react-router');
+var ReactRouter = require('react-router')
+var Router = ReactRouter.Router
+var Route = ReactRouter.Route
+var IndexRoute = ReactRouter.IndexRoute;
+var hashHistory = ReactRouter.hashHistory;
 
 var App = React.createClass({
 	getInitialState: function() {
@@ -60,7 +64,11 @@ var App = React.createClass({
 });
 
 ReactDom.render(
-  <App />,
+  <Router history={hashHistory}>
+  	<IndexRoute component={App}/>
+    <Route path="/p/:id" component={Article}/>
+    <Route path="/:type/:cate" component={Trend}/>
+  </Router>,
   document.getElementById('app')
 );
 

@@ -9,6 +9,7 @@ var Router = ReactRouter.Router
 var Route = ReactRouter.Route
 var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
+var IndexRedirect = ReactRouter.Redirect;
 
 var App = React.createClass({
 	getInitialState: function() {
@@ -55,10 +56,12 @@ var App = React.createClass({
 });
 
 ReactDom.render(
-  <Router history={hashHistory}>
-  	<IndexRoute component={App}/>
-    <Route path="/p/:id" component={Article}/>
-    <Route path="/:type/:cate" component={Trend}/>
+  <Router>
+  	<Route path="/" component={App}>
+	  	<IndexRedirect to="/hot/now" />
+    	<Route path="/p/:id" component={Article}/>
+    	<Route path="/:type/:cate" component={Trend}/>
+	</Route>
   </Router>,
   document.getElementById('app')
 );

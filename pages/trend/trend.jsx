@@ -5,9 +5,8 @@ var Search = require('search/search.jsx');
 
 var Trend = React.createClass({
     render: function() {
-        var type = this.props.type;
-        var cate = this.props.cate;
-        var currentView = this.props.currentView;
+        var type = this.props.params.type;
+        var cate = this.props.params.cate;
         var pubsub = this.props.pubsub;
         return (
             <div>
@@ -45,7 +44,7 @@ var Trend = React.createClass({
                         </ul>
                     </div>
                     {/*文章列表*/}
-                    <List type={type} cate={cate} currentView={currentView} pubsub={pubsub} />
+                    <List type={type} cate={cate} pubsub={pubsub} />
                 </div>
                 <Footer />
             </div>

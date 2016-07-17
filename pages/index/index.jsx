@@ -26,18 +26,9 @@ var App = React.createClass({
 		PubSub.subscribe(oEventType.cate,this.fCateChange);
 	},
 	render: function() {
-		var oView = {};
-		var sCurrentView = this.state.currentView;
-		if(sCurrentView === 'article'){
-			oView = <Article articleid={this.state.article_id} />
-		}
-		else{
-			oView = <Trend type={this.state.type} cate={this.state.cate} currentView={this.state.currentView} pubsub={PubSub} />
-		}
-
 		return (
 			<div>
-				{oView}
+				{this.props.children}
 			</div>
 		);
 	},

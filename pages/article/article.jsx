@@ -9,11 +9,13 @@ var Article = React.createClass({
             article:{}  
         };
     },
-    componentWillMount: function() {  
-        this.getArticleDetail(this.props.articleid);
+    componentWillMount: function() { 
+        console.log('mount ' + this.props.params.id); 
+        this.getArticleDetail(this.props.params.id);
     },
     componentWillReceiveProps: function(nextProps,nextState) {
-        var id = nextProps.articleid;
+        console.log('props ' + nextProps.params.id);
+        var id = nextProps.params.id;
         this.getArticleDetail(id);
     },
     render: function() {

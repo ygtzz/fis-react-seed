@@ -9,6 +9,7 @@ var Router = ReactRouter.Router
 var Route = ReactRouter.Route
 var IndexRoute = ReactRouter.IndexRoute;
 var IndexRedirect = ReactRouter.Redirect;
+var browserHistory = ReactRouter.browserHistory;
 
 var App = React.createClass({
 	childContextTypes: {

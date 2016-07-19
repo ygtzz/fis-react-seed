@@ -65,7 +65,7 @@ var App = React.createClass({
 
 ReactDom.render(
   <Router history={hashHistory}>
-  	<IndexRoute component={App}/>
+  	<IndexRoute component={Trend}/>
     <Route path="/p/:id" component={Article}/>
     <Route path="/:type/:cate" component={Trend}/>
   </Router>,

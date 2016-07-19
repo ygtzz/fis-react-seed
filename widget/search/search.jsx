@@ -3,6 +3,9 @@ var oEventType = require('eventType/eventType');
 var DebounceInput = require('react-debounce-input');
 
 var Search = React.createClass({
+	contextTypes: {
+        pubsub: React.PropTypes.object.isRequired
+    },
 	render: function() {
 		return (
 			<div>
@@ -19,7 +22,7 @@ var Search = React.createClass({
 	},
 	fSearch: function(evt){
 		console.log(Date.now());
-		this.props.pubsub.publish(oEventType.search,evt.target.value);
+		this.context.pubsub.publish(oEventType.search,evt.target.value);
 	}
 });
 

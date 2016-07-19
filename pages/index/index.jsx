@@ -11,6 +11,14 @@ var IndexRoute = ReactRouter.IndexRoute;
 var IndexRedirect = ReactRouter.Redirect;
 
 var App = React.createClass({
+	childContextTypes: {
+         pubsub: React.PropTypes.object.isRequired
+    },
+    getChildContext: function() {
+         return {
+             pubsub: PubSub
+         };
+    },
 	render: function() {
 		return (
 			<div>

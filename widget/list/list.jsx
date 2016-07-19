@@ -12,11 +12,14 @@ var List = React.createClass({
             aArticle:[]
         }
     },
+    contextTypes: {
+        pubsub: React.PropTypes.object.isRequired
+    },
     componentWillMount:function(){
         console.log('list componentWillMount');
         var type = this.props.type;
         var cate = this.props.cate;
-        this.fSetData(type,cate,currentView);
+        this.fSetData(type,cate);
     },
     componentWillReceiveProps: function(nextProps,nextState) {
         console.log('list componentWillReceiveProps');
@@ -26,7 +29,7 @@ var List = React.createClass({
     },
     componentDidMount:function(){
         console.log('list componentDidMount');
-        this.props.pubsub.subscribe(oEventType.search,this.searchArticles);
+        this.context.pubsub.subscribe(oEventType.search,this.searchArticles);
     },
     render: function() {
         var aArticleHtml = this.state.aArticle.map(function(art,index) {

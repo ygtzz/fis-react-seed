@@ -6,7 +6,7 @@ fis.hook('commonjs',{
 	extList: ['.js', '.jsx', '.es', '.ts', '.tsx']
 });
 
-fis.match('/{components,widget,pages}/**.{js,jsx}', {
+fis.match('/{components,widget,pages,redux}/**.{js,jsx}', {
     isMod: true,
     useSameNameRequire:true
 });

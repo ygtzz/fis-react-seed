@@ -1,0 +1,10 @@
+{
+    "repos": "https://github.com/rackt/react-redux.git",
+    "version": "v4.0.0",
+    "name": "react-redux",
+    "main": "react-redux.js",
+    "dependencies": {
+        "react": "^0.14.0",
+        "redux": "*"
+    }
+}

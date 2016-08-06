@@ -1,6 +1,5 @@
 var types = require('../action-type');
 var service = require('mock/service');
-var object = require('lodash/object');
 var Immutable = require('immutable');
 
 var oState = Immutable.fromJS({

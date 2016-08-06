@@ -1,11 +1,10 @@
 var React = require('react');
-var oEventType = require('eventType/eventType');
 var DebounceInput = require('react-debounce-input');
+var bindActionCreators = require('redux').bindActionCreators;
+var connect = require('react-redux').connect;
+var actions = require('redux/actions');
 
 var Search = React.createClass({
-	contextTypes: {
-        pubsub: React.PropTypes.object.isRequired
-    },
 	render: function() {
 		return (
 			<div>
@@ -22,8 +21,15 @@ var Search = React.createClass({
 	},
 	fSearch: function(evt){
 		console.log(Date.now());
-		this.context.pubsub.publish(oEventType.search,evt.target.value);
+		this.props.actions.fSearchArticles(evt.target.value);
 	}
 });
 
-module.exports = Search;
+module.exports = connect(
+    null,
+    function(dispatch){
+        return {
+            actions: bindActionCreators(actions,dispatch)
+        }
+    }
+)(Search);

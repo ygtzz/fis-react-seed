@@ -2,24 +2,27 @@ var React = require('react');
 var marked = require('marked');
 var Footer = require('footer/footer');
 var service = require("mock/service.js");
+var bindActionCreators = require('redux').bindActionCreators;
+var connect = require('react-redux').connect;
+var actions = require('redux/actions');
 
 var Article = React.createClass({
-    getInitialState: function() {
-        return {
-            article:{}  
-        };
-    },
     componentWillMount: function() { 
-        console.log('mount ' + this.props.params.id); 
-        this.getArticleDetail(this.props.params.id);
+        console.log('article mount');
+        var props = this.props;
+        var id = props.params.id;
+        var actions = props.actions;
+        actions.fGetArticleDetail(id);
     },
     componentWillReceiveProps: function(nextProps,nextState) {
-        console.log('props ' + nextProps.params.id);
-        var id = nextProps.params.id;
-        this.getArticleDetail(id);
+        console.log('article receive');        
+        var props = nextProps;
+        var id = props.params.id;
+        var actions = props.actions;
+        actions.fGetArticleDetail(id);
     },
     render: function() {
-        var article = this.state.article;
+        var article = this.props.article;
         var sArtContent = marked(article.content || '');
         return (
             <div>
@@ -80,15 +83,20 @@ var Article = React.createClass({
             <Footer />
             </div> 
         );
-    },
-    getArticleDetail : function(id){
-        var self = this;
-        var article = service.getArticleDetail(id,function(article){
-            self.setState({article:article});
-        })
     }
 });
 
-module.exports = Article;
+module.exports = connect(
+    function(state){
+        return {
+            article: state.article.article
+        }
+    },
+    function(dispatch){
+        return {
+            actions:bindActionCreators(actions,dispatch)
+        }
+    }
+)(Article);
 
 

@@ -9,7 +9,12 @@ var Router = ReactRouter.Router
 var Route = ReactRouter.Route
 var IndexRoute = ReactRouter.IndexRoute;
 var IndexRedirect = ReactRouter.Redirect;
-var browserHistory = ReactRouter.browserHistory;
+var hashHistory = ReactRouter.hashHistory;
+var Provider = require('react-redux').Provider;
+var store = require('redux/store');
+var syncHistoryWithStore = require('react-router-redux').syncHistoryWithStore;
+
+var history = syncHistoryWithStore(hashHistory,store);
 
 var App = React.createClass({
 	childContextTypes: {
@@ -30,14 +35,16 @@ var App = React.createClass({
 });
 
 ReactDom.render(
-  <Router>
-  	<Route path="/" component={App}>
-	  	<IndexRedirect to="/hot/now" />
-    	<Route path="/p/:id" component={Article}/>
-    	<Route path="/:type/:cate" component={Trend}/>
-	</Route>
-  </Router>,
-  document.getElementById('app')
+	<Provider store={store}>
+		<Router history={history}>
+			<Route path="/" component={App}>
+				<IndexRedirect to="/hot/now" />
+				<Route path="/p/:id" component={Article}/>
+				<Route path="/:type/:cate" component={Trend}/>
+			</Route>
+		</Router>
+  	</Provider>,
+  	document.getElementById('app')
 );
 
 

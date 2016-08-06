@@ -1,30 +1,32 @@
 var types = require('action-type');
 
-function fGetArticleDetail(article) {
+function fGetArticleDetail(articleId) {
     return {
         type: types['getArticleDetail'],
-        article: article
+        articleId: articleId
     }
 }
 
-function fGetCateList(cates){
+function fGetCateList(sType,sCate){
     return {
         type: types['getCateList'],
-        cates: cates
+        sType: sType,
+        sCate: sCate
     }
 }
 
-function fGetArticleList (articles) {
+function fGetArticleList (sType,sCate) {
     return {
         type: types['getArticleList'],
-        articles: articles
+        sType: sType,
+        sCate: sCate
     }
 }
 
-function fSearchArticles(articles){
+function fSearchArticles(sKeyword){
     return {
         type: types['searchArticles'],
-        articles: articles
+        sKeyword: sKeyword
     }
 }
 

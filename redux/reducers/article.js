@@ -1,4 +1,6 @@
-var types = require('action-type');
+var types = require('../action-type');
+var service = require('mock/service');
+var object = require('lodash/object');
 
 var oState = {
     article: { 'content': '' }
@@ -10,18 +12,20 @@ function fArticleReducer(state,action) {
     }
     switch(action.type){
         case types['getArticleDetail']:
-
-            break;
+            return object.assign({},state,{
+                article: fGetArticleDetail(action.articleId)
+            });
         default:
             return state;
     }
-
 }
 
-function fGetArticleDetail(store,id) {
-    var article = service.getArticleDetail(id, function(article) {
-        store.dispatch(types['getArticleDetail'],article);
+function fGetArticleDetail(id) {
+    var oArticle;
+    service.getArticleDetail(id, function(article) {
+        oArticle = article;
     })
+    return oArticle;
 }
 
-module.exports = fGetArticle;
+module.exports = fArticleReducer;

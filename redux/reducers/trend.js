@@ -1,8 +1,10 @@
-var types = require('action-type');
+var types = require('../action-type');
+var service = require('mock/service');
+var object = require('lodash/object');
 
 var oState = {
-    cates:[],
-    articles:[]
+    aCate:[],
+    aArticle:[]
 }
 
 function fTrendReducer(state,action) {
@@ -11,17 +13,23 @@ function fTrendReducer(state,action) {
     }
     switch(action.type){
         case types['getCateList']:
-            break;
+            return object.assign({},state,{
+                aCate: fGetCateList(action.sType,action.sCate)
+            });
         case types['getArticleList']:
-            break;
+            return object.assign({},state,{
+                aArticle: fGetArticleList(action.sType,action.sCate)
+            });
         case types['searchArticles']:
-            break;
+            return object.assign({},state,{
+                aArticle: fSearchArticles(action.sKeyword)
+            });
         default:
             return state;
     }
 }
 
-function fGetCateList(store,type,cate){
+function fGetCateList(type,cate){
     var cateList = {
         'hot' : [{
             'id' : 'now',
@@ -53,24 +61,27 @@ function fGetCateList(store,type,cate){
             'name' : '世间事'
         }]
     };
-
     var list  = cateList[type] || [];
     for (var i = 0; i < list.length; i++) {
         list[i]['active'] = list[i]['id'] == cate;
     };      
-    store.dispatch(types['getCateList'],list);
+    return list;
 }
 
-function fGetArticleList (store,type,cate) {
+function fGetArticleList (type,cate) {
+    var aArticle;
     service.getArticleList(type,cate,function(articles){
-        store.dispatch(types['getArticleList'],articles);
-    })
+        aArticle = articles;
+    });
+    return aArticle;
 }
 
-function fSearchArticles(store,keyword){
+function fSearchArticles(keyword){
+    var aArticle;
     service.searchArticles(keyword,function(articles){
-        store.dispatch(types['searchArticles'],articles);
+        aArticle = articles;
     })
+    return aArticle;
 }
 
 module.exports = fTrendReducer;

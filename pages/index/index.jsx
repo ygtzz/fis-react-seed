@@ -28,6 +28,7 @@ ReactDom.render(
 	<Provider store={store}>
 		<Router history={history}>
 			<Route path="/" component={App}>
+				<IndexRedirect to='/hot/now' />
 				<Route path="/p/:id" component={Article}/>
 				<Route path="/:type/:cate" component={Trend}/>
 			</Route>

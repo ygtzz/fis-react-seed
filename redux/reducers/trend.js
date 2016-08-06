@@ -1,11 +1,12 @@
 var types = require('../action-type');
 var service = require('mock/service');
 var object = require('lodash/object');
+var Immutable = require('immutable');
 
-var oState = {
+var oState = Immutable.fromJS({
     aCate:[],
     aArticle:[]
-}
+});
 
 function fTrendReducer(state,action) {
     if(state === undefined){
@@ -13,17 +14,17 @@ function fTrendReducer(state,action) {
     }
     switch(action.type){
         case types['getCateList']:
-            return object.assign({},state,{
-                aCate: fGetCateList(action.sType,action.sCate)
-            });
+            return state.set(
+                'aCate', fGetCateList(action.sType,action.sCate)
+            );
         case types['getArticleList']:
-            return object.assign({},state,{
-                aArticle: fGetArticleList(action.sType,action.sCate)
-            });
+            return state.set(
+                'aArticle', fGetArticleList(action.sType,action.sCate)
+            );
         case types['searchArticles']:
-            return object.assign({},state,{
-                aArticle: fSearchArticles(action.sKeyword)
-            });
+            return state.set(
+                'aArticle', fSearchArticles(action.sKeyword)
+            );
         default:
             return state;
     }

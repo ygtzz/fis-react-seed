@@ -1,0 +1,13 @@
+{
+    "name": "immutable",
+    "description": "Immutable Data Collections",
+    "repos": "https://github.com/facebook/immutable-js.git",
+    "main": "immutable.js",
+    "tag": "master",
+    "reposType": "npm",
+    "dependencies": {},
+    "paths": {
+        "dist": "."
+    },
+    "version": "3.7.6"
+}

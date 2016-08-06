@@ -89,7 +89,7 @@ var Article = React.createClass({
 module.exports = connect(
     function(state){
         return {
-            article: state.article.article
+            article: state.article.get('article')
         }
     },
     function(dispatch){

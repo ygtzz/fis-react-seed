@@ -1,10 +1,10 @@
 var types = require('../action-type');
 var service = require('mock/service');
-var object = require('lodash/object');
+var Immutable = require('immutable');
 
-var oState = {
-    article: { 'content': '' }
-}
+var oState = Immutable.fromJS({ 
+    article: { 'content': '' } 
+});
 
 function fArticleReducer(state,action) {
     if(state === undefined){
@@ -12,9 +12,9 @@ function fArticleReducer(state,action) {
     }
     switch(action.type){
         case types['getArticleDetail']:
-            return object.assign({},state,{
-                article: fGetArticleDetail(action.articleId)
-            });
+            return state.set(
+                'article',fGetArticleDetail(action.articleId)
+            );
         default:
             return state;
     }

@@ -24,8 +24,8 @@ var List = React.createClass({
     },
     render: function() {
         var sType = this.props.type,
-            aArticle = this.props.trend.aArticle || [],
-            aCate = this.props.trend.aCate || [];
+            aArticle = this.props.aArticle,
+            aCate = this.props.aCate;
         var aArticleHtml = aArticle.map(function(art,index) {
             var sItemclass = art.wrap_img ? 'have-img' : '',
                 sArtHref = '#p/' + art.article_id,
@@ -86,7 +86,8 @@ var List = React.createClass({
 module.exports = connect(
     function(state){
         return {
-            trend: state.trend
+            aArticle : state.trend.get('aArticle'),
+            aCate : state.trend.get('aCate')
         }
     },
     function(dispatch){

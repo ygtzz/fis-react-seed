@@ -2,9 +2,7 @@ var React = require('react');
 var ReactDom = require('react-dom');
 var Trend = require('pages/trend/trend.jsx');
 var Article = require('pages/article/article.jsx');
-var PubSub = require('pubsub');
-var oEventType = require('eventType/eventType');
-var ReactRouter = require('react-router')
+var ReactRouter = require('react-router');
 var Router = ReactRouter.Router
 var Route = ReactRouter.Route
 var IndexRoute = ReactRouter.IndexRoute;
@@ -17,14 +15,6 @@ var syncHistoryWithStore = require('react-router-redux').syncHistoryWithStore;
 var history = syncHistoryWithStore(hashHistory,store);
 
 var App = React.createClass({
-	childContextTypes: {
-         pubsub: React.PropTypes.object.isRequired
-    },
-    getChildContext: function() {
-         return {
-             pubsub: PubSub
-         };
-    },
 	render: function() {
 		return (
 			<div>

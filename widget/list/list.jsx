@@ -2,7 +2,6 @@ var React = require('react');
 var DateTime = require('filter/datetime');
 var Category = require('category/category.jsx');
 var service = require('mock/service.js');
-var oEventType = require('eventType/eventType');
 var bindActionCreators = require('redux').bindActionCreators;
 var connect = require('react-redux').connect;
 var actions = require('redux/actions');

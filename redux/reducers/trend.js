@@ -1,32 +1,122 @@
-var types = require('../action-type');
+var oActionType = require('../action-type');
+var aActionType = oActionType.action;
+var aActionStatus = oActionType.status;
 var service = require('mock/service');
 var Immutable = require('immutable');
 
 var oState = Immutable.fromJS({
-    aCate:[],
-    aArticle:[]
+    oCate: {
+        bFetching:false,
+        bError: false,
+        data: []
+    },
+    oAtricle:{
+        bFetching:false,
+        bError: false,
+        data: []
+    }
 });
 
 function fTrendReducer(state,action) {
     if(state === undefined){
         return oState;
     }
+    var st;
     switch(action.type){
-        case types['getCateList']:
-            return state.set(
-                'aCate', fGetCateList(action.sType,action.sCate)
-            );
-        case types['getArticleList']:
-            return state.set(
-                'aArticle', fGetArticleList(action.sType,action.sCate)
-            );
-        case types['searchArticles']:
-            return state.set(
-                'aArticle', fSearchArticles(action.sKeyword)
-            );
+        case aActionType['getCateList']:
+            st =  fCateHandler(state,action);
+            break;
+        case aActionType['getArticleList']:
+            st = fArticleHandler(state,action);
+            break;
+        case aActionType['searchArticles']:
+            st = fSearchHandler(state,action);
+            break;
         default:
-            return state;
+            break;
     }
+    return st;
+}
+
+function fCateHandler(state,action) {
+    var s;
+    switch(action.status){
+        case aActionStatus['request']:
+            s = state.updateIn(['oCate', 'bFetching'], function(bFetching) {
+                return true;
+            });
+            break;
+        case aActionStatus['response']:
+            s = state.updateIn(['oCate', 'bFetching'], function(bFetching) {
+                return false;
+            });
+            s = state.updateIn(['oCate', 'data'], function(data) {
+                return fGetCateList(action.sType,action.sCate);
+            });
+            break;
+        case aActionStatus['error']:
+            s = state.updateIn(['oCate', 'bError'], function(bError) {
+                return true;
+            });
+            break;
+        default:
+            break;
+    }
+    return s;
+}
+
+function fArticleHandler(state,action) {
+    var s;
+    switch(action.status){
+        case aActionStatus['request']:
+            s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {
+                return true;
+            });
+            break;
+        case aActionStatus['response']:
+            s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {
+                return false;
+            });
+            s = state.updateIn(['oAtricle', 'data'], function(data) {
+                return fGetArticleList(action.sType,action.sCate);
+            });
+            break;
+        case aActionStatus['error']:
+            s = state.updateIn(['oAtricle', 'bError'], function(bError) {
+                return true;
+            });
+            break;
+        default:
+            break;
+    }
+    return s;
+}
+
+function fSearchHandler(state,action){
+    var s;
+    switch(action.status){
+        case aActionStatus['request']:
+            s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {
+                return true;
+            });
+            break;
+        case aActionStatus['response']:
+            s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {
+                return false;
+            });
+            s = state.updateIn(['oAtricle', 'data'], function(data) {
+                return fSearchArticles(action.sKeyword);
+            });
+            break;
+        case aActionStatus['error']:
+            s = state.updateIn(['oAtricle', 'bError'], function(bError) {
+                return true;
+            });
+            break;
+        default:
+            break;
+    }
+    return s;
 }
 
 function fGetCateList(type,cate){

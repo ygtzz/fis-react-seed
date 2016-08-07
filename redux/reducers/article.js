@@ -1,23 +1,57 @@
-var types = require('../action-type');
+var oActionType = require('../action-type');
+var aActionType = oActionType.action;
+var aActionStatus = oActionType.status;
 var service = require('mock/service');
 var Immutable = require('immutable');
 
 var oState = Immutable.fromJS({ 
-    article: { 'content': '' } 
+    oArticle: {
+        bFetching: false,
+        bError: false,
+        article: { 'content': '' } 
+    }
 });
 
 function fArticleReducer(state,action) {
     if(state === undefined){
         return oState;
     }
+    var st;
     switch(action.type){
-        case types['getArticleDetail']:
-            return state.set(
-                'article',fGetArticleDetail(action.articleId)
-            );
+        case aActionType['getArticleDetail']:
+            st = fArticleHandler(state,action);
+            break;
         default:
-            return state;
+            break;
     }
+    return st;
+}
+
+function fArticleHandler(state,action) {
+    var s;
+    switch(action.status){
+        case aActionStatus['request']:
+            s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
+                return true;
+            });
+            break;
+        case aActionStatus['response']:
+            s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
+                return false;
+            });
+            s = state.updateIn(['oArticle', 'data'], function(data) {
+                return fGetArticleDetail(action.articleId);
+            });
+            break;
+        case aActionStatus['error']:
+            s = state.updateIn(['oArticle', 'bError'], function(bError) {
+                return true;
+            });
+            break;
+        default:
+            break;
+    }
+    return s;
 }
 
 function fGetArticleDetail(id) {

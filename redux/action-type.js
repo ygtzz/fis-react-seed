@@ -1,8 +1,15 @@
 var keyMirror = require('keymirror');
 
-module.exports = keyMirror({
-    'getCateList': '',
-    'getArticleList': '',
-    'searchArticles': '',
-    'getArticleDetail': ''
-})
+module.exports = {
+    action: keyMirror({
+        'getCateList': '',
+        'getArticleList': '',
+        'searchArticles': '',
+        'getArticleDetail': ''
+    }),
+    status: keyMirror({
+        'request':'',
+        'response':'',
+        'error':''
+    })
+}

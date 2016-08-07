@@ -1,0 +1,13 @@
+{
+    "name": "antd",
+    "description": "一个 UI 设计语言",
+    "repos": "https://github.com/ant-design/ant-design.git",
+    "main": "antd",
+    "tag": "master",
+    "reposType": "npm",
+    "dependencies": {},
+    "version": "1.1.0",
+    "paths": {
+        "dist": "."
+    }
+}

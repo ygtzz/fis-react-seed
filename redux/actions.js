@@ -1,10 +1,10 @@
-var oActionType = require('../action-type');
+var oActionType = require('action-type');
 var aActionType = oActionType.action;
 var aActionStatus = oActionType.status;
 
 function fGetArticleDetail(status,articleId) {
     return {
-        type: types['getArticleDetail'],
+        type: aActionType['getArticleDetail'],
         status: status,
         articleId: articleId
     }
@@ -20,7 +20,7 @@ function fGetArticleDetailAsync(articleId) {
 
 function fGetCateList(status,sType,sCate){
     return {
-        type: types['getCateList'],
+        type: aActionType['getCateList'],
         status: status,
         sType: sType,
         sCate: sCate
@@ -37,7 +37,7 @@ function fGetCateListAsync(sType,sCate) {
 
 function fGetArticleList (status,sType,sCate) {
     return {
-        type: types['getArticleList'],
+        type: aActionType['getArticleList'],
         status: status,
         sType: sType,
         sCate: sCate
@@ -54,7 +54,7 @@ function fGetArticleListAsync(sType,sCate) {
 
 function fSearchArticles(sKeyword){
     return {
-        type: types['searchArticles'],
+        type: aActionType['searchArticles'],
         sKeyword: sKeyword
     }
 }

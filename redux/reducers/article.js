@@ -8,7 +8,7 @@ var oState = Immutable.fromJS({
     oArticle: {
         bFetching: false,
         bError: false,
-        article: { 'content': '' } 
+        data: { 'content': '' } 
     }
 });
 
@@ -16,7 +16,7 @@ function fArticleReducer(state,action) {
     if(state === undefined){
         return oState;
     }
-    var st;
+    var st = state;
     switch(action.type){
         case aActionType['getArticleDetail']:
             st = fArticleHandler(state,action);
@@ -28,7 +28,7 @@ function fArticleReducer(state,action) {
 }
 
 function fArticleHandler(state,action) {
-    var s;
+    var s = state;
     switch(action.status){
         case aActionStatus['request']:
             s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {

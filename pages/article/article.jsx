@@ -22,7 +22,9 @@ var Article = React.createClass({
         actions.fGetArticleDetail(id);
     },
     render: function() {
-        var article = this.props.article;
+        var oArticle = this.props.oArticle;
+        console.log('article ' + oArticle);
+        var article = oArticle.get('data');
         var sArtContent = marked(article.content || '');
         return (
             <div>
@@ -89,7 +91,7 @@ var Article = React.createClass({
 module.exports = connect(
     function(state){
         return {
-            article: state.article.get('article')
+            oArticle: state.article.get('oArticle')
         }
     },
     function(dispatch){

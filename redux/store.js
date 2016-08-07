@@ -9,8 +9,8 @@ var loggerMiddleware = createLogger();
 var store = createStore(
     rootReducer,
     applyMiddleware(
-        thunkMiddleware,
-        loggerMiddleware
+        thunkMiddleware//,
+        //loggerMiddleware
     )
 );
 

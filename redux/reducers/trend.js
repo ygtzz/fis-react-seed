@@ -10,7 +10,7 @@ var oState = Immutable.fromJS({
         bError: false,
         data: []
     },
-    oAtricle:{
+    oArticle:{
         bFetching:false,
         bError: false,
         data: []
@@ -33,13 +33,14 @@ function fTrendReducer(state,action) {
             st = fSearchHandler(state,action);
             break;
         default:
+            st = state;
             break;
     }
     return st;
 }
 
 function fCateHandler(state,action) {
-    var s;
+    var s = state;
     switch(action.status){
         case aActionStatus['request']:
             s = state.updateIn(['oCate', 'bFetching'], function(bFetching) {
@@ -66,23 +67,23 @@ function fCateHandler(state,action) {
 }
 
 function fArticleHandler(state,action) {
-    var s;
+    var s = state;
     switch(action.status){
         case aActionStatus['request']:
-            s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {
+            s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return true;
             });
             break;
         case aActionStatus['response']:
-            s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {
+            s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return false;
             });
-            s = state.updateIn(['oAtricle', 'data'], function(data) {
+            s = state.updateIn(['oArticle', 'data'], function(data) {
                 return fGetArticleList(action.sType,action.sCate);
             });
             break;
         case aActionStatus['error']:
-            s = state.updateIn(['oAtricle', 'bError'], function(bError) {
+            s = state.updateIn(['oArticle', 'bError'], function(bError) {
                 return true;
             });
             break;
@@ -93,7 +94,7 @@ function fArticleHandler(state,action) {
 }
 
 function fSearchHandler(state,action){
-    var s;
+    var s = state;
     switch(action.status){
         case aActionStatus['request']:
             s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {

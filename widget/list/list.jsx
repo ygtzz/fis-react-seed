@@ -5,27 +5,32 @@ var service = require('mock/service.js');
 var bindActionCreators = require('redux').bindActionCreators;
 var connect = require('react-redux').connect;
 var actions = require('redux/actions');
+var antd = require('antd');
+var message = antd.message;
 
 var List = React.createClass({
-    componentWillMount:function(){
-        console.log('list componentWillMount');
-        //this.fSetData(this.props);
-    },
-    componentWillReceiveProps: function(nextProps,nextState) {
-        console.log('list componentWillReceiveProps');
-        //this.fSetData(nextProps);
-    },
-    fSetData: function(props){
-        var type = props.type;
-        var cate = props.cate;
-        var actions = props.actions;
-        actions.fGetCateList(type,cate);
-        actions.fGetArticleList(type,cate);
+    componentWillReceiveProps:function(nextProps,nextState) {
+        var oArticle = nextProps.oArticle,
+            oCate = nextProps.oCate;
+        if(oArticle.get('bFetching')){
+            message.loading('article loading...',2000);
+        }
+        else{
+            message.destroy();
+        }
+        if(oCate.get('bFetching')){
+            message.loading('cate loading...',2000);            
+        }
+        else{
+            message.destroy();
+        }
     },
     render: function() {
         var sType = this.props.type,
-            aArticle = this.props.aArticle,
-            aCate = this.props.aCate;
+            oArticle = this.props.oArticle,
+            oCate = this.props.oCate;
+        var aCate = oCate.get('data'),
+            aArticle = oArticle.get('data');
         var aArticleHtml = aArticle.map(function(art,index) {
             var sItemclass = art.wrap_img ? 'have-img' : '',
                 sArtHref = '#p/' + art.article_id,
@@ -86,13 +91,8 @@ var List = React.createClass({
 module.exports = connect(
     function(state){
         return {
-            aArticle : state.trend.get('aArticle'),
-            aCate : state.trend.get('aCate')
-        }
-    },
-    function(dispatch){
-        return {
-            actions: bindActionCreators(actions,dispatch)
+            oArticle : state.trend.get('oArticle'),
+            oCate : state.trend.get('oCate')
         }
     }
 )(List);

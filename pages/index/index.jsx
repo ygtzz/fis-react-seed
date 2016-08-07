@@ -15,6 +15,10 @@ var syncHistoryWithStore = require('react-router-redux').syncHistoryWithStore;
 var history = syncHistoryWithStore(hashHistory,store);
 
 var App = React.createClass({
+	componentWillReceiveProps: function(nextProps,nextState) {
+        console.log('app componentWillReceiveProps');
+        console.log(nextProps);
+    },
 	render: function() {
 		return (
 			<div>
@@ -37,4 +41,4 @@ ReactDom.render(
   	document.getElementById('app')
 );
 
-location.hash = '/hot/now';//IndexRedirect没起作用
+//location.hash = '/hot/now';//IndexRedirect没起作用

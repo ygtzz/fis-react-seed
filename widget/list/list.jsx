@@ -13,13 +13,7 @@ var List = React.createClass({
         var oArticle = nextProps.oArticle,
             oCate = nextProps.oCate;
         if(oArticle.get('bFetching')){
-            message.loading('article loading...',2000);
-        }
-        else{
-            message.destroy();
-        }
-        if(oCate.get('bFetching')){
-            message.loading('cate loading...',2000);            
+            message.loading('loading...',2);
         }
         else{
             message.destroy();

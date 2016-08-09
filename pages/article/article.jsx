@@ -20,8 +20,8 @@ var Article = React.createClass({
         this.fLoading(nextProps);
     },
     fAction:function(props){
-        var actions = props.actions;
-		var id = props.params.id;		
+		var id = props.params.id;
+        var actions = props.actions;		
         actions.fGetArticleDetail(id);	
     },
     fLoading:function(nextProps){

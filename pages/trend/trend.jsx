@@ -18,6 +18,7 @@ var Trend = React.createClass({
     fAction:function(props){
         var type = props.params.type;
         var cate = props.params.cate;
+        var actions = props.actions;
         actions.fGetCateList(type,cate);
         actions.fGetArticleList(type,cate);	
     },

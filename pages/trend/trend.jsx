@@ -2,28 +2,9 @@ var React = require('react');
 var List = require('list/list.jsx');
 var Footer = require('footer/footer.jsx');
 var Search = require('search/search.jsx');
-var bindActionCreators = require('redux').bindActionCreators;
-var connect = require('react-redux').connect;
-var actions = require('redux/actions');
 
 var Trend = React.createClass({
-    componentWillMount:function(){
-        console.log('trend componentWillMount');
-        this.fSetData(this.props);
-    },
-    componentWillReceiveProps: function(nextProps,nextState) {
-        console.log('trend componentWillReceiveProps');
-        this.fSetData(nextProps);
-    },
-    fSetData: function(props){
-        var type = props.params.type;
-        var cate = props.params.cate;
-        var actions = props.actions;
-        actions.fGetCateList(type,cate);
-        actions.fGetArticleList(type,cate);
-    },
     render: function() {
-        console.log('trend render');
         var type = this.props.params.type;
         var cate = this.props.params.cate;
         return (
@@ -70,11 +51,4 @@ var Trend = React.createClass({
     }
 });
 
-module.exports = connect(
-    null,
-    function(dispatch){
-        return {
-            actions: bindActionCreators(actions,dispatch)
-        }
-    }
-)(Trend);
+module.exports = Trend;

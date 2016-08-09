@@ -2,28 +2,23 @@ var React = require('react');
 var marked = require('marked');
 var Footer = require('footer/footer');
 var service = require("mock/service.js");
-var bindActionCreators = require('redux').bindActionCreators;
 var connect = require('react-redux').connect;
-var actions = require('redux/actions');
+var antd = require('antd');
+var message = antd.message;
 
 var Article = React.createClass({
-    componentWillMount: function() { 
-        console.log('article mount');
-        var props = this.props;
-        var id = props.params.id;
-        var actions = props.actions;
-        actions.fGetArticleDetail(id);
-    },
     componentWillReceiveProps: function(nextProps,nextState) {
-        console.log('article receive');        
-        var props = nextProps;
-        var id = props.params.id;
-        var actions = props.actions;
-        actions.fGetArticleDetail(id);
+        console.log('article receive');    
+        var oArticle = nextProps.oArticle;
+        if(oArticle.get('bFetching')){
+            message.loading('loading...',0.2);
+        }
+        else{
+            message.destroy();
+        }    
     },
     render: function() {
         var oArticle = this.props.oArticle;
-        console.log('article ' + oArticle);
         var article = oArticle.get('data');
         var sArtContent = marked(article.content || '');
         return (
@@ -92,11 +87,6 @@ module.exports = connect(
     function(state){
         return {
             oArticle: state.article.get('oArticle')
-        }
-    },
-    function(dispatch){
-        return {
-            actions:bindActionCreators(actions,dispatch)
         }
     }
 )(Article);

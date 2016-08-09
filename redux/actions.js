@@ -14,7 +14,7 @@ function fGetArticleDetailAsync(articleId) {
         dispatch(fGetArticleDetail(aActionStatus['request']));
         setTimeout(function() {
             dispatch(fGetArticleDetail(aActionStatus['response'],articleId));
-        },2000);
+        },200);
     }
 }
 
@@ -31,7 +31,7 @@ function fGetCateListAsync(sType,sCate) {
         dispatch(fGetCateList(aActionStatus['request']));
         setTimeout(function() {
             dispatch(fGetCateList(aActionStatus['response'],sType,sCate));
-        },2000);
+        },200);
     }
 }
 
@@ -48,7 +48,7 @@ function fGetArticleListAsync(sType,sCate) {
         dispatch(fGetArticleList(aActionStatus['request']));
         setTimeout(function() {
             dispatch(fGetArticleList(aActionStatus['response'],sType,sCate));
-        },2000);
+        },200);
     }
 }
 
@@ -63,7 +63,7 @@ function fSearchArticlesAsync(sType,sCate) {
         dispatch(fSearchArticles(aActionStatus['request']));
         setTimeout(function() {
             dispatch(fSearchArticles(aActionStatus['response'],sType,sCate));
-        },2000);
+        },200);
     }
 }
 

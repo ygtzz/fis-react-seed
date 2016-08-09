@@ -13,7 +13,7 @@ var List = React.createClass({
         var oArticle = nextProps.oArticle,
             oCate = nextProps.oCate;
         if(oArticle.get('bFetching')){
-            message.loading('loading...',2);
+            message.loading('loading...',0.2);
         }
         else{
             message.destroy();
@@ -83,7 +83,7 @@ var List = React.createClass({
 });
 
 module.exports = connect(
-    function(state){
+    function(state,ownProps){
         return {
             oArticle : state.trend.get('oArticle'),
             oCate : state.trend.get('oCate')

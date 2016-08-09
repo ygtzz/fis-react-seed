@@ -5,7 +5,8 @@ module.exports = {
         'getCateList': '',
         'getArticleList': '',
         'searchArticles': '',
-        'getArticleDetail': ''
+        'getArticleDetail': '',
+        '@@router/LOCATION_CHANGE':''
     }),
     status: keyMirror({
         'request':'',

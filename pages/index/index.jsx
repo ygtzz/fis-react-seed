@@ -66,4 +66,4 @@ ReactDom.render(
   	document.getElementById('app')
 );
 
-location.href = '/hot/now';
+location.hash = '/hot/now';

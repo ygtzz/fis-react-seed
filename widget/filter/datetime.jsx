@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var DateTime = React.createClass({
     
@@ -25,5 +25,5 @@ var DateTime = React.createClass({
     }
 });
 
-module.exports = DateTime;
+export default DateTime;
 

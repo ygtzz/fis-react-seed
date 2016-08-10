@@ -1,6 +1,4 @@
-var oActionType = require('action-type');
-var aActionType = oActionType.action;
-var aActionStatus = oActionType.status;
+import {action as aActionType,status as aActionStatus} from 'action-type';
 
 function fGetArticleDetail(status,articleId) {
     return {
@@ -67,7 +65,7 @@ function fSearchArticlesAsync(sType,sCate) {
     }
 }
 
-module.exports = {
+export default {
     fGetArticleDetail: fGetArticleDetailAsync,
     fGetCateList: fGetCateListAsync,
     fGetArticleList: fGetArticleListAsync,

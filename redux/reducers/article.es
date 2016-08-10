@@ -1,8 +1,6 @@
-var oActionType = require('../action-type');
-var aActionType = oActionType.action;
-var aActionStatus = oActionType.status;
-var service = require('mock/service');
-var Immutable = require('immutable');
+import {action as aActionType,status as aActionStatus} from '../action-type';
+import service from 'mock/service';
+import Immutable from 'immutable';
 
 var oState = Immutable.fromJS({ 
     oArticle: {
@@ -62,4 +60,4 @@ function fGetArticleDetail(id) {
     return oArticle;
 }
 
-module.exports = fArticleReducer;
+export default fArticleReducer;

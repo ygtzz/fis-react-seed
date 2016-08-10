@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var ErrorPage = React.createClass({
 	render: function() {
@@ -11,4 +11,4 @@ var ErrorPage = React.createClass({
 	}
 });
 
-module.exports = ErrorPage;
+export default ErrorPage;

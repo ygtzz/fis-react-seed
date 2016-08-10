@@ -1,8 +1,6 @@
-var oActionType = require('../action-type');
-var aActionType = oActionType.action;
-var aActionStatus = oActionType.status;
-var service = require('mock/service');
-var Immutable = require('immutable');
+import {action as aActionType,status as aActionStatus} from '../action-type';
+import service from 'mock/service';
+import Immutable from 'immutable';
 
 var oState = Immutable.fromJS({
     oCate: {
@@ -175,4 +173,4 @@ function fSearchArticles(keyword){
     return aArticle;
 }
 
-module.exports = fTrendReducer;
+export default fTrendReducer;

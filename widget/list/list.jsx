@@ -1,11 +1,11 @@
-var React = require('react');
-var DateTime = require('filter/datetime');
-var Category = require('category/category.jsx');
-var service = require('mock/service.js');
-var bindActionCreators = require('redux').bindActionCreators;
-var connect = require('react-redux').connect;
-var actions = require('redux/actions');
-var antd = require('antd');
+import React from 'react';
+import DateTime from 'filter/datetime';
+import Category from 'category/category';
+import service from 'mock/service';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import actions from 'redux/actions';
+import antd from 'antd';
 var message = antd.message;
 
 var List = React.createClass({
@@ -82,7 +82,7 @@ var List = React.createClass({
     }
 });
 
-module.exports = connect(
+export default connect(
     function(state,ownProps){
         return {
             oArticle : state.trend.get('oArticle'),

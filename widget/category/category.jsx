@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 var Category = React.createClass({
 	render: function() {
@@ -22,4 +22,4 @@ var Category = React.createClass({
 	}
 });
 
-module.exports = Category;
+export default Category;

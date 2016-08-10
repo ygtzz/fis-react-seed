@@ -6,7 +6,7 @@ fis.hook('commonjs',{
 	extList: ['.js', '.jsx', '.es', '.ts', '.tsx']
 });
 
-fis.match('/{components,widget,pages,redux}/**.{js,jsx}', {
+fis.match('/{components,widget,pages,redux}/**.{js,jsx,es}', {
     isMod: true,
     useSameNameRequire:true
 });
@@ -22,8 +22,8 @@ fis.match('**.scss', {
     })
 });
 // 编译所有后缀为 jsx 的文件为 js
-fis.match('{*.jsx,*:jsx}', {
-    parser: fis.plugin('reactjs', {
+fis.match('{*.jsx,*:jsx,*.es}', {
+    parser: fis.plugin('babel-5.x', {
         sourceMaps: true
     }),
     rExt: '.js'

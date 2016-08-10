@@ -1,8 +1,8 @@
-var React = require('react');
-var DebounceInput = require('react-debounce-input');
-var bindActionCreators = require('redux').bindActionCreators;
-var connect = require('react-redux').connect;
-var actions = require('redux/actions');
+import React from 'react';
+import DebounceInput from 'react-debounce-input';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import actions from 'redux/actions';
 
 var Search = React.createClass({
 	render: function() {
@@ -25,7 +25,7 @@ var Search = React.createClass({
 	}
 });
 
-module.exports = connect(
+export default connect(
     null,
     function(dispatch){
         return {

@@ -1,12 +1,13 @@
-var React = require('react');
-var marked = require('marked');
-var Footer = require('footer/footer');
-var service = require("mock/service.js");
-var bindActionCreators = require('redux').bindActionCreators;
-var connect = require('react-redux').connect;
-var actions = require('redux/actions');
-var antd = require('antd');
+import React from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import marked from 'marked';
+import Footer from 'footer';
+import service from 'mock/service';
+import actions from 'redux/actions';
+import antd from 'antd';
 var message = antd.message;
+
 
 var Article = React.createClass({
     componentWillMount: function(){
@@ -99,17 +100,9 @@ var Article = React.createClass({
     }
 });
 
-module.exports = connect(
-    function(state){
-        return {
-            oArticle: state.article.get('oArticle')
-        }
-    },
-    function(dispatch){
-        return {
-            actions: bindActionCreators(actions,dispatch)
-        }
-    }
+export default connect(
+    state => { return {oArticle: state.article.get('oArticle')} },
+    dispatch => { return {actions: bindActionCreators(actions,dispatch)} }
 )(Article);
 
 

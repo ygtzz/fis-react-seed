@@ -1,7 +1,6 @@
-var oActionType = require('../action-type');
-var aActionType = oActionType.action;
-var aActionStatus = oActionType.status;
-var Immutable = require('immutable');
+import {action as aActionType,status as aActionStatus} from '../action-type';
+import service from 'mock/service';
+import Immutable from 'immutable';
 
 var oState = Immutable.fromJS({ 
     routing:{}
@@ -28,4 +27,4 @@ function fRouterHandler(state,action) {
     return s;
 }
 
-module.exports = fRouterReducer;
+export default fRouterReducer;

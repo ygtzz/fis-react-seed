@@ -1,10 +1,10 @@
-var React = require('react');
-var List = require('list/list.jsx');
-var Footer = require('footer/footer.jsx');
-var Search = require('search/search.jsx');
-var bindActionCreators = require('redux').bindActionCreators;
-var connect = require('react-redux').connect;
-var actions = require('redux/actions');
+import React from 'react';
+import List from 'list/list';
+import Footer from 'footer/footer';
+import Search from 'search/search';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import actions from 'redux/actions';
 
 var Trend = React.createClass({
     componentWillMount: function(){
@@ -69,11 +69,7 @@ var Trend = React.createClass({
     }
 });
 
-module.exports = connect(
-    null,
-    function(dispatch){
-        return {
-            actions: bindActionCreators(actions,dispatch)
-        }
-    }
+export default connect(null,
+    dispatch => {return { actions: bindActionCreators(actions,dispatch) } }
 )(Trend);
+    

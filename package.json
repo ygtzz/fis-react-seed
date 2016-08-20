@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "build":"rm -rf dist && fis3 release -d dist",
+        "serve":"fis3 server --root dist start"
+    }
+}

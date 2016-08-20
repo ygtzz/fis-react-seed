@@ -27,7 +27,8 @@ function fArticleReducer(state,action) {
 
 function fArticleHandler(state,action) {
     var s = state;
-    switch(action.status){
+    var payload = action.payload;
+    switch(payload.status){
         case aActionStatus['request']:
             s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return true;
@@ -38,7 +39,7 @@ function fArticleHandler(state,action) {
                 return false;
             });
             s = state.updateIn(['oArticle', 'data'], function(data) {
-                return fGetArticleDetail(action.articleId);
+                return fGetArticleDetail(payload.articleId);
             });
             break;
         case aActionStatus['error']:

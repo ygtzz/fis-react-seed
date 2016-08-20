@@ -1,12 +1,20 @@
 import {action as aActionType,status as aActionStatus} from 'action-type';
+import {createAction} from 'redux-actions'
 
-function fGetArticleDetail(status,articleId) {
-    return {
-        type: aActionType['getArticleDetail'],
+// function fGetArticleDetail(status,articleId) {
+//     return {
+//         type: aActionType['getArticleDetail'],
+//         status: status,
+//         articleId: articleId
+//     }
+// }
+const fGetArticleDetail = createAction(aActionType['getArticleDetail'],(status,articleId) => {
+    return ({
         status: status,
         articleId: articleId
-    }
-}
+    })
+});
+
 function fGetArticleDetailAsync(articleId) {
     return function(dispatch) {
         dispatch(fGetArticleDetail(aActionStatus['request']));

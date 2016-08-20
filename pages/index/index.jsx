@@ -24,7 +24,6 @@ ReactDom.render(
 	<Provider store={store}>
 		<Router history={history}>
 			<Route path="/" component={App}>
-				<IndexRoute component={Home} />
 				<Route path="/p/:id" component={Article}/>
 				<Route path="/:type/:cate" component={Trend}/>
 			</Route>

@@ -1,0 +1,10 @@
+{
+    "repos": "https://github.com/lodash/lodash.git",
+    "tag": "master",
+    "name": "lodash._basefor",
+    "main": "index.js",
+    "version": "3.0.3",
+    "description": "The modern build of lodash’s internal `baseFor` as a module.",
+    "reposType": "npm",
+    "dependencies": {}
+}

@@ -1,0 +1,13 @@
+{
+    "repos": "https://github.com/lodash/lodash.git",
+    "tag": "master",
+    "name": "lodash.isplainobject",
+    "main": "index.js",
+    "dependencies": {
+        "lodash._basefor": "^3.0.0",
+        "lodash.keysin": "^3.0.0"
+    },
+    "version": "3.2.0",
+    "description": "The modern build of lodash’s `_.isPlainObject` as a module.",
+    "reposType": "npm"
+}

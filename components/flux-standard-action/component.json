@@ -1,0 +1,10 @@
+{
+    "repos": "https://github.com/acdlite/flux-standard-action.git",
+    "version": "0.6.0",
+    "tag": "master",
+    "name": "flux-standard-action",
+    "main": "lib/index.js",
+    "dependencies": {
+        "lodash.isplainobject": "^3.2.0"
+    }
+}

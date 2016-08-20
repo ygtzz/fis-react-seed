@@ -1,0 +1,10 @@
+{
+    "name": "lodash.isarguments",
+    "description": "The lodash method `_.isArguments` exported as a module.",
+    "repos": "https://github.com/lodash/lodash.git",
+    "tag": "master",
+    "reposType": "npm",
+    "version": "3.0.7",
+    "dependencies": {},
+    "main": "index.js"
+}

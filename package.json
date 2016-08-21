@@ -2,6 +2,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "fis3 release -cd ./dist && fis3 server start --www dist --no-daemon",
+        "build": "rm -rf dist && fis3 release -cd dist",
         "dev": "rm -rf dist && fis3 release -cwd dist",
         "release": "rm -rf dist && fis3 release prod -cd dist"
     }

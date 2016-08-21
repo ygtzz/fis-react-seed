@@ -1,6 +1,7 @@
-import {action as aActionType,status as aActionStatus} from '../action-type';
+import oActionType from '../action-type';
 import service from 'mock/service';
 import Immutable from 'immutable';
+import { handleActions } from 'redux-actions';
 
 var oState = Immutable.fromJS({ 
     oArticle: {
@@ -10,47 +11,29 @@ var oState = Immutable.fromJS({
     }
 });
 
-function fArticleReducer(state,action) {
-    if(state === undefined){
-        return oState;
-    }
-    var st = state;
-    switch(action.type){
-        case aActionType['getArticleDetail']:
-            st = fArticleHandler(state,action);
-            break;
-        default:
-            break;
-    }
-    return st;
-}
-
-function fArticleHandler(state,action) {
-    var s = state;
-    switch(action.status){
-        case aActionStatus['request']:
-            s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
+const fArticleReducer = handleActions({
+    [oActionType['getArticleDetail.request']]:(state,action) => {
+        let s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return true;
             });
-            break;
-        case aActionStatus['response']:
-            s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
+        return s;
+    },
+    [oActionType['getArticleDetail.ok']]:(state,action) => {
+       let s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return false;
             });
             s = state.updateIn(['oArticle', 'data'], function(data) {
-                return fGetArticleDetail(action.articleId);
+                return fGetArticleDetail(action.payload.articleId);
             });
-            break;
-        case aActionStatus['error']:
-            s = state.updateIn(['oArticle', 'bError'], function(bError) {
+        return s;
+    },
+    [oActionType['getArticleDetail.error']]:(state,action) => {
+       let s = state.updateIn(['oArticle', 'bError'], function(bError) {
                 return true;
             });
-            break;
-        default:
-            break;
-    }
-    return s;
-}
+       return s;
+    }             
+},oState);
 
 function fGetArticleDetail(id) {
     var oArticle;

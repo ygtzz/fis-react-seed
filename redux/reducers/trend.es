@@ -1,6 +1,7 @@
-import {action as aActionType,status as aActionStatus} from '../action-type';
+import oActionType from '../action-type';
 import service from 'mock/service';
 import Immutable from 'immutable';
+import { handleActions } from 'redux-actions';
 
 var oState = Immutable.fromJS({
     oCate: {
@@ -15,108 +16,71 @@ var oState = Immutable.fromJS({
     }
 });
 
-function fTrendReducer(state,action) {
-    if(state === undefined){
-        return oState;
-    }
-    var st;
-    switch(action.type){
-        case aActionType['getCateList']:
-            st =  fCateHandler(state,action);
-            break;
-        case aActionType['getArticleList']:
-            st = fArticleHandler(state,action);
-            break;
-        case aActionType['searchArticles']:
-            st = fSearchHandler(state,action);
-            break;
-        default:
-            st = state;
-            break;
-    }
-    return st;
-}
-
-function fCateHandler(state,action) {
-    var s = state;
-    switch(action.status){
-        case aActionStatus['request']:
-            s = state.updateIn(['oCate', 'bFetching'], function(bFetching) {
+const fTrendReducer = handleActions({
+    [oActionType['getCateList.request']]:(state,action) => {
+        let s = state.updateIn(['oCate', 'bFetching'], function(bFetching) {
                 return true;
             });
-            break;
-        case aActionStatus['response']:
-            s = state.updateIn(['oCate', 'bFetching'], function(bFetching) {
+        return s;
+    },
+    [oActionType['getCateList.ok']]:(state,action) => {
+       let s = state.updateIn(['oCate', 'bFetching'], function(bFetching) {
                 return false;
             });
             s = state.updateIn(['oCate', 'data'], function(data) {
                 return fGetCateList(action.sType,action.sCate);
             });
-            break;
-        case aActionStatus['error']:
-            s = state.updateIn(['oCate', 'bError'], function(bError) {
+        return s;
+    },
+    [oActionType['getCateList.error']]:(state,action) => {
+       let s = state.updateIn(['oCate', 'bError'], function(bError) {
                 return true;
             });
-            break;
-        default:
-            break;
-    }
-    return s;
-}
-
-function fArticleHandler(state,action) {
-    var s = state;
-    switch(action.status){
-        case aActionStatus['request']:
-            s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
+       return s;
+    },
+    [oActionType['getArticleList.request']]:(state,action) => {
+        let s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return true;
             });
-            break;
-        case aActionStatus['response']:
-            s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
+        return s;
+    },
+    [oActionType['getArticleList.ok']]:(state,action) => {
+       let s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return false;
             });
             s = state.updateIn(['oArticle', 'data'], function(data) {
                 return fGetArticleList(action.sType,action.sCate);
             });
-            break;
-        case aActionStatus['error']:
-            s = state.updateIn(['oArticle', 'bError'], function(bError) {
+        return s;
+    },
+    [oActionType['getArticleList.error']]:(state,action) => {
+       let s = state.updateIn(['oArticle', 'bError'], function(bError) {
                 return true;
             });
-            break;
-        default:
-            break;
-    }
-    return s;
-}
-
-function fSearchHandler(state,action){
-    var s = state;
-    switch(action.status){
-        case aActionStatus['request']:
-            s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {
+       return s;
+    },
+    [oActionType['searchArticles.request']]:(state,action) => {
+        let s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {
                 return true;
             });
-            break;
-        case aActionStatus['response']:
-            s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {
+        return s;
+    },
+    [oActionType['searchArticles.ok']]:(state,action) => {
+       let s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {
                 return false;
             });
             s = state.updateIn(['oAtricle', 'data'], function(data) {
                 return fSearchArticles(action.sKeyword);
             });
-            break;
-        case aActionStatus['error']:
-            s = state.updateIn(['oAtricle', 'bError'], function(bError) {
+        return s;
+    },
+    [oActionType['searchArticles.error']]:(state,action) => {
+       let s = state.updateIn(['oAtricle', 'bError'], function(bError) {
                 return true;
             });
-            break;
-        default:
-            break;
-    }
-    return s;
-}
+       return s;
+    }                                       
+},oState);
 
 function fGetCateList(type,cate){
     var cateList = {

@@ -1,66 +1,88 @@
-import {action as aActionType,status as aActionStatus} from 'action-type';
+import oActionType from 'action-type';
+import {createAction} from 'redux-actions'
 
-function fGetArticleDetail(status,articleId) {
-    return {
-        type: aActionType['getArticleDetail'],
-        status: status,
+const fGetArticleDetailRequest = createAction(oActionType['getArticleDetail.request'],(articleId) => {
+    return ({
         articleId: articleId
-    }
-}
+    })
+});
+
+const fGetArticleDetailOk = createAction(oActionType['getArticleDetail.ok'],(articleId) => {
+    return ({
+        articleId: articleId
+    })
+});
+
 function fGetArticleDetailAsync(articleId) {
     return function(dispatch) {
-        dispatch(fGetArticleDetail(aActionStatus['request']));
+        dispatch(fGetArticleDetailRequest(articleId));
         setTimeout(function() {
-            dispatch(fGetArticleDetail(aActionStatus['response'],articleId));
+            dispatch(fGetArticleDetailOk(articleId));
         },200);
     }
 }
 
-function fGetCateList(status,sType,sCate){
-    return {
-        type: aActionType['getCateList'],
-        status: status,
+const fGetCateListRequest = createAction(oActionType['getCateList.request'],(sType,sCate) => {
+    return ({
         sType: sType,
         sCate: sCate
-    }
-}
+    })
+});
+
+const fGetCateListOk = createAction(oActionType['getCateList.ok'],(sType,sCate) => {
+    return ({
+        sType: sType,
+        sCate: sCate
+    })
+});
+
 function fGetCateListAsync(sType,sCate) {
     return function(dispatch) {
-        dispatch(fGetCateList(aActionStatus['request']));
+        dispatch(fGetCateListRequest(sType,sCate));
         setTimeout(function() {
-            dispatch(fGetCateList(aActionStatus['response'],sType,sCate));
+            dispatch(fGetCateListOk(sType,sCate));
         },200);
     }
 }
 
-function fGetArticleList (status,sType,sCate) {
-    return {
-        type: aActionType['getArticleList'],
-        status: status,
+const fGetArticleListRequest = createAction(oActionType['getArticleList.request'],(sType,sCate) => {
+    return ({
         sType: sType,
         sCate: sCate
-    }
-}
+    })
+});
+
+const fGetArticleListOk = createAction(oActionType['getArticleList.ok'],(sType,sCate) => {
+    return ({
+        sType: sType,
+        sCate: sCate
+    })
+});
 function fGetArticleListAsync(sType,sCate) {
     return function(dispatch) {
-        dispatch(fGetArticleList(aActionStatus['request']));
+        dispatch(fGetArticleListRequest(sType,sCate));
         setTimeout(function() {
-            dispatch(fGetArticleList(aActionStatus['response'],sType,sCate));
+            dispatch(fGetArticleListOk(sType,sCate));
         },200);
     }
 }
 
-function fSearchArticles(sKeyword){
-    return {
-        type: aActionType['searchArticles'],
+const fSearchArticlesRequest = createAction(oActionType['searchArticles.request'],(sKeyword) => {
+    return ({
         sKeyword: sKeyword
-    }
-}
+    })
+});
+
+const fSearchArticlesOk = createAction(oActionType['searchArticles.ok'],(sKeyword) => {
+    return ({
+        sKeyword: sKeyword
+    })
+});
 function fSearchArticlesAsync(sType,sCate) {
     return function(dispatch) {
-        dispatch(fSearchArticles(aActionStatus['request']));
+        dispatch(fSearchArticlesRequest(sKeyword));
         setTimeout(function() {
-            dispatch(fSearchArticles(aActionStatus['response'],sType,sCate));
+            dispatch(fSearchArticlesOk(sKeyword));
         },200);
     }
 }

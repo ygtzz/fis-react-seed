@@ -1,0 +1,7 @@
+{
+    "repos": "https://github.com/acdlite/reduce-reducers.git",
+    "version": "0.1.1",
+    "tag": "master",
+    "name": "reduce-reducers",
+    "main": "lib/index.js"
+}

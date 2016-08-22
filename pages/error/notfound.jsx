@@ -1,7 +1,7 @@
-import React from 'react';
+import React,{Component} from 'react';
 
-var ErrorPage = React.createClass({
-	render: function() {
+class ErrorPage extends Component{
+	render() {
 		return (
 			<div>
 				<h1>页面找不到</h1> 
@@ -9,6 +9,6 @@ var ErrorPage = React.createClass({
 			</div>
 		);
 	}
-});
+}
 
 export default ErrorPage;

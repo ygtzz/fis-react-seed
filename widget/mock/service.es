@@ -1,5 +1,5 @@
 //mock data
-var articles = [{
+let articles = [{
     'wrap_img' : "/static/images/wrap_image_1.jpg",
     'avatar'   : '/static/images/avatar1.jpg',
     'author_id'  : '001',

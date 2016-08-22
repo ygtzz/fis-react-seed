@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import List from 'list/list';
 import Footer from 'footer/footer';
 import Search from 'search/search';
@@ -6,25 +6,25 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import actions from 'redux/actions';
 
-var Trend = React.createClass({
-    componentWillMount: function(){
+class Trend extends Component{
+    componentWillMount(){
         console.log('trend mount');
        	this.fAction(this.props);	
-    },
-    componentWillReceiveProps: function(nextProps,nextState) {
+    }
+    componentWillReceiveProps(nextProps,nextState) {
         console.log('trend componentWillReceiveProps');
        	this.fAction(nextProps);
-    },
-    fAction:function(props){
-        var type = props.params.type;
-        var cate = props.params.cate;
-        var actions = props.actions;
+    }
+    fAction(props){
+        const type = props.params.type;
+        const cate = props.params.cate;
+        const actions = props.actions;
         actions.fGetCateList(type,cate);
         actions.fGetArticleList(type,cate);	
-    },
-    render: function() {
-        var type = this.props.params.type;
-        var cate = this.props.params.cate;
+    }
+    render() {
+        const type = this.props.params.type;
+        const cate = this.props.params.cate;
         return (
             <div>
                 <div className="recommended">
@@ -67,7 +67,7 @@ var Trend = React.createClass({
             </div>
         );
     }
-});
+}
 
 export default connect(null,
     dispatch => {return { actions: bindActionCreators(actions,dispatch) } }

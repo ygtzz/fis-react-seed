@@ -60,22 +60,22 @@ const fTrendReducer = handleActions({
        return s;
     },
     [oActionType['searchArticles.request']]:(state,action) => {
-        let s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {
+        let s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return true;
             });
         return s;
     },
     [oActionType['searchArticles.ok']]:(state,action) => {
-       let s = state.updateIn(['oAtricle', 'bFetching'], function(bFetching) {
+       let s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return false;
             });
-            s = state.updateIn(['oAtricle', 'data'], function(data) {
+            s = state.updateIn(['oArticle', 'data'], function(data) {
                 return fSearchArticles(action.payload.sKeyword);
             });
         return s;
     },
     [oActionType['searchArticles.error']]:(state,action) => {
-       let s = state.updateIn(['oAtricle', 'bError'], function(bError) {
+       let s = state.updateIn(['oArticle', 'bError'], function(bError) {
                 return true;
             });
        return s;

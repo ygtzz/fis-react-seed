@@ -78,7 +78,7 @@ const fSearchArticlesOk = createAction(oActionType['searchArticles.ok'],(sKeywor
         sKeyword: sKeyword
     })
 });
-function fSearchArticlesAsync(sType,sCate) {
+function fSearchArticlesAsync(sKeyword) {
     return function(dispatch) {
         dispatch(fSearchArticlesRequest(sKeyword));
         setTimeout(function() {

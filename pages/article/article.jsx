@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import marked from 'marked';
@@ -7,35 +7,38 @@ import service from 'mock/service';
 import actions from 'redux/actions';
 import {message} from 'antd';
 
-var Article = React.createClass({
-    componentWillMount: function(){
+class Article extends Component{
+    constructor(props){
+        super(props);
+    }
+    componentWillMount(){
         console.log('article mount');
        	this.fAction(this.props);	
         this.fLoading(this.props);
-    },
-    componentWillReceiveProps: function(nextProps,nextState) {
+    }
+    componentWillReceiveProps(nextProps,nextState) {
         console.log('article receive');
        	this.fAction(nextProps);	
         this.fLoading(nextProps);
-    },
-    fAction:function(props){
-		var id = props.params.id;
-        var actions = props.actions;		
+    }
+    fAction(props){
+		const id = props.params.id;
+        const actions = props.actions;		
         actions.fGetArticleDetail(id);	
-    },
-    fLoading:function(nextProps){
-        var oArticle = nextProps.oArticle;
+    }
+    fLoading(nextProps){
+        const oArticle = nextProps.oArticle;
         if(oArticle.get('bFetching')){
             message.loading('loading...',0.2);
         }
         else{
             message.destroy();
         }    
-    },
-    render: function() {
-        var oArticle = this.props.oArticle;
-        var article = oArticle.get('data');
-        var sArtContent = marked(article.content || '');
+    }
+    render() {
+        const oArticle = this.props.oArticle;
+        const article = oArticle.get('data');
+        const sArtContent = marked(article.content || '');
         return (
             <div>
                 <div className="container reader-font1">
@@ -96,7 +99,7 @@ var Article = React.createClass({
             </div> 
         );
     }
-});
+}
 
 export default connect(
     state => { return {oArticle: state.article.get('oArticle')} },

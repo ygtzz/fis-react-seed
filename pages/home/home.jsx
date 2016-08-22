@@ -1,11 +1,11 @@
-import React from 'react';
+import React,{Component} from 'react';
 
-var Home = React.createClass({
-	render: function() {
+class Home extends Component{
+	render() {
 		return (
 			<p>FIS vueJS 简书DEMO</p>
 		);
 	}
-});
+}
 
 export default Home;

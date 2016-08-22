@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import ReactDom from 'react-dom';
 import {Router,Route,IndexRoute,IndexRedirect,hashHistory} from 'react-router';
 import {Provider} from 'react-redux';
@@ -8,17 +8,17 @@ import Article from 'pages/article/article';
 import Home from 'pages/home/home';
 import store from 'redux/store';
 
-var history = syncHistoryWithStore(hashHistory,store);
+const history = syncHistoryWithStore(hashHistory,store);
 
-var App = React.createClass({
-	render: function() {
+class App extends Component{
+	render() {
 		return (
 			<div>
 				{this.props.children}
 			</div>
 		);
 	}
-});
+}
 
 ReactDom.render(
 	<Provider store={store}>

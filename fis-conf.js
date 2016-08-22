@@ -26,7 +26,7 @@ fis.match('{*.jsx,*:jsx,*.es}', {
     parser: fis.plugin('babel-5.x', {
         sourceMaps: true
     },{
-        plugins: [["antd", {}]]
+        babelrc: '.babelrc'
     }),
     rExt: '.js'
 });

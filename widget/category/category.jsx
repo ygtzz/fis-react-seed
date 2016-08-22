@@ -1,12 +1,12 @@
-import React from 'react';
+import React,{Component} from 'react';
 
-var Category = React.createClass({
-	render: function() {
-		var type = this.props.type;
-		var aCate = this.props.aCate || [];
-		var aCateHtml = aCate.map(function(c,index) {
-			var sLiClass = c.active ? 'active' : '';
-			var sHref = '/#' + type + '/' + c.id;
+class Category extends Component{
+	render() {
+		const type = this.props.type;
+		const aCate = this.props.aCate || [];
+		const aCateHtml = aCate.map(function(c,index) {
+			const sLiClass = c.active ? 'active' : '';
+			const sHref = '/#' + type + '/' + c.id;
 			return (
 				<li key={'cate' + index} className={sLiClass}>
   					<a href={sHref} className="category">{ c.name }</a>
@@ -20,6 +20,6 @@ var Category = React.createClass({
 			</ul>
 		);
 	}
-});
+}
 
 export default Category;

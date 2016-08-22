@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import DateTime from 'filter/datetime';
 import Category from 'category/category';
 import service from 'mock/service';
@@ -7,8 +7,8 @@ import {connect} from 'react-redux';
 import actions from 'redux/actions';
 import {message} from 'antd';
 
-var List = React.createClass({
-    componentWillReceiveProps:function(nextProps,nextState) {
+class List extends Component{
+    componentWillReceiveProps(nextProps,nextState) {
         var oArticle = nextProps.oArticle,
             oCate = nextProps.oCate;
         if(oArticle.get('bFetching')){
@@ -17,8 +17,8 @@ var List = React.createClass({
         else{
             message.destroy();
         }
-    },
-    render: function() {
+    }
+    render() {
         var sType = this.props.type,
             oArticle = this.props.oArticle,
             oCate = this.props.oCate;
@@ -79,7 +79,7 @@ var List = React.createClass({
             </div>
         );
     }
-});
+}
 
 export default connect(
     function(state,ownProps){

@@ -3,7 +3,7 @@ import service from 'mock/service';
 import Immutable from 'immutable';
 import { handleActions } from 'redux-actions';
 
-var oState = Immutable.fromJS({ 
+const oState = Immutable.fromJS({ 
     oArticle: {
         bFetching: false,
         bError: false,

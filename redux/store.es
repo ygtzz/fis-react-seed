@@ -3,9 +3,9 @@ import rootReducer from 'reducers';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 
-var loggerMiddleware = createLogger();
+const loggerMiddleware = createLogger();
 
-var store = createStore(
+const store = createStore(
     rootReducer,
     compose(
         applyMiddleware(thunkMiddleware),

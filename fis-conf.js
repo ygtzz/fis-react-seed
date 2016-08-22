@@ -25,6 +25,8 @@ fis.match('**.scss', {
 fis.match('{*.jsx,*:jsx,*.es}', {
     parser: fis.plugin('babel-5.x', {
         sourceMaps: true
+    },{
+        plugins: [["antd", {}]]
     }),
     rExt: '.js'
 });
@@ -68,7 +70,6 @@ fis.media('prod')
         optimizer: fis.plugin('clean-css'),
         useHash:true,
         useSprite:true
-        //domain:fis.get('cssPath')
     })
     .match('**.js',{
         optimizer: fis.plugin('uglify-js'),         
@@ -121,11 +122,5 @@ fis.media('prod')
     })
     .match('/pages/(**)/(*).{js,jsx}', {
         packTo:'/static/pages/page.js'
-    })
-    // .match('/static/**.{css,scss}', {
-    //     useHash:true
-    // })
-    // .match('/static/**.js', {
-    //     //domain:fis.get('jsPath')
-    // });
+    });
     

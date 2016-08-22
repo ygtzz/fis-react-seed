@@ -28,7 +28,7 @@ const fTrendReducer = handleActions({
                 return false;
             });
             s = state.updateIn(['oCate', 'data'], function(data) {
-                return fGetCateList(action.sType,action.sCate);
+                return fGetCateList(action.payload.sType,action.payload.sCate);
             });
         return s;
     },
@@ -49,7 +49,7 @@ const fTrendReducer = handleActions({
                 return false;
             });
             s = state.updateIn(['oArticle', 'data'], function(data) {
-                return fGetArticleList(action.sType,action.sCate);
+                return fGetArticleList(action.payload.sType,action.payload.sCate);
             });
         return s;
     },
@@ -70,7 +70,7 @@ const fTrendReducer = handleActions({
                 return false;
             });
             s = state.updateIn(['oAtricle', 'data'], function(data) {
-                return fSearchArticles(action.sKeyword);
+                return fSearchArticles(action.payload.sKeyword);
             });
         return s;
     },

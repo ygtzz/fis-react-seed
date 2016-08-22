@@ -5,8 +5,7 @@ import service from 'mock/service';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import actions from 'redux/actions';
-import antd from 'antd';
-var message = antd.message;
+import {message} from 'antd';
 
 var List = React.createClass({
     componentWillReceiveProps:function(nextProps,nextState) {

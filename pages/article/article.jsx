@@ -5,9 +5,7 @@ import marked from 'marked';
 import Footer from 'footer';
 import service from 'mock/service';
 import actions from 'redux/actions';
-import antd from 'antd';
-var message = antd.message;
-
+import {message} from 'antd';
 
 var Article = React.createClass({
     componentWillMount: function(){

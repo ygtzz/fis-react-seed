@@ -1,19 +1,20 @@
 
 fis.set('project.ignore',['node_modules/**', 'fis-conf.js','component.json','README.md']);
+//fis.set('project.files', 'mod/pages/index/index.html'); // 按需编译
 
 fis.unhook('components');
 fis.hook('node_modules');
 fis.hook('commonjs',{
+    baseUrl: './mod',
 	extList: ['.js', '.jsx', '.es', '.ts', '.tsx']
 });
 
-fis.match('/{node_modules,widget,pages,redux}/**.{js,jsx,es}', {
-    isMod: true,
-    useSameNameRequire:true
+fis.match('/{node_modules,mod}/**.{js,jsx,es}', {
+    isMod: true
 });
 
-fis.match('/components/mod/mod.js', {
-    isMod: false
+fis.match('/mod/**.{js,jsx,es}', {
+    useSameNameRequire:true
 });
 
 fis.match('**.scss', {
@@ -26,8 +27,6 @@ fis.match('**.scss', {
 fis.match('{*.jsx,*:jsx,*.es}', {
     parser: fis.plugin('babel-5.x', {
         sourceMaps: true
-    },{
-        babelrc: '.babelrc'
     }),
     rExt: '.js'
 });

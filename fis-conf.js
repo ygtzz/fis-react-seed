@@ -78,49 +78,35 @@ fis.media('prod')
     .match(/\.png$/i, {
     	optimizer: fis.plugin('png-compressor')
   	})
-    .match('/base/**', {
+    .match('node_modules/**',{
         optimizer: null,
         useHash: false
     })
-    .match('/components/**', {
-        release:false
-    })
-    .match('/components/(**.{css,scss})', {
-        release:'/static/components/$1',
-        packTo: '/static/coms/com.css'
-    })
-    .match('/components/(**.js)', {
-        release:'/static/components/$1',
-        packTo: '/static/coms/coms.js'
-    })
-    .match('/components/mod/mod.js', {
-        packTo: false
-    })
-    .match('/components/**/react.js', {
-        packTo:false,
-        release:true,
-        useHash:false,
-        url:'/static/coms/react.min.js'
-    })
-    .match('/components/react/react.min.js', {
-        moduleId: 'components/react/react',
-        packTo: false,
-        useHash:false,
-        release:'/static/coms/react.min.js'
-    })
-    .match('/components/**/{react-with-addons,react-dom-server,react-min}.js', {
-        release:false
-    })
-    .match('/widget/**.{css,scss}', {
-        packTo: '/static/widget/widget.css'
-    })
-    .match('/widget/(**).{js,jsx}', {
-        packTo: '/static/widget/widget.js'
-    })
-    .match('/pages/(**)/(*).{css,scss}', {
-        packTo:'/static/pages/page.css'
-    })
-    .match('/pages/(**)/(*).{js,jsx}', {
-        packTo:'/static/pages/page.js'
+    // .match('/widget/**.{css,scss}', {
+    //     packTo: '/static/widget/widget.css'
+    // })
+    // .match('/widget/(**).{js,jsx}', {
+    //     packTo: '/static/widget/widget.js'
+    // })
+    // .match('/pages/(**)/(*).{css,scss}', {
+    //     packTo:'/static/pages/page.css'
+    // })
+    // .match('/pages/(**)/(*).{js,jsx}', {
+    //     packTo:'/static/pages/page.js'
+    // });
+    .match('::package', {
+        packager: fis.plugin('deps-pack', {
+            'pkg/react.js': [
+                'node_modules/react/dist/react.min.js',
+                'node_modules/react-dom/dist/react-dom.min.js'
+            ],
+            'pkg/index.js': [
+                'mod/pages/index/index.jsx',
+                'mod/pages/index/index.jsx:deps',
+                '!react:deps'
+            ],
+            'pkg/index.css': [
+                'mod/pages/index/index.jsx:deps'
+            ]
+        })
     });
-    

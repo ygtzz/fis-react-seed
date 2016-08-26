@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import List from 'list/list';
-import Footer from 'footer/footer';
-import Search from 'search/search';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import List from 'widget/list/list';
+import Footer from 'widget/footer/footer';
+import Search from 'widget/search/search';
 import actions from 'redux/actions';
 
 class Trend extends Component{

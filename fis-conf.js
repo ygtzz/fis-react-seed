@@ -1,10 +1,9 @@
 
 fis.set('project.ignore',['node_modules/**', 'fis-conf.js','component.json','README.md']);
 
-fis.unhook('components')
-fis.hook('node_modules')
+fis.unhook('components');
+fis.hook('node_modules');
 fis.hook('commonjs',{
-	baseUrl:'./widget',
 	extList: ['.js', '.jsx', '.es', '.ts', '.tsx']
 });
 

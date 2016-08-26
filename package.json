@@ -1,18 +1,21 @@
 {
   "scripts": {
     "start": "fis3 release -cd ./dist && fis3 server start --www dist --no-daemon",
+    "serve": "fis3 server start --www dist --no-daemon",    
     "build": "rm -rf dist && fis3 release -cd dist",
     "dev": "rm -rf dist && fis3 release -cwd dist",
     "release": "rm -rf dist && fis3 release prod -cd dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "babel-plugin-antd": "^0.5.1"
+    "babel-plugin-antd": "^0.5.1",
+    "process": "^0.11.8"
   },
   "dependencies": {
     "immutable": "^3.8.1",
     "keymirror": "^0.1.1",
     "react": "^15.3.1",
+    "react-debounce-input": "^2.4.0",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.7.0",

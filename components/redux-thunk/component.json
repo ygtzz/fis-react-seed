@@ -1,9 +1,0 @@
-{
-    "repos": "https://github.com/gaearon/redux-thunk.git",
-    "version": "v1.0.0",
-    "name": "redux-thunk",
-    "main": "index.js",
-    "dependencies": {
-        "redux": "*"
-    }
-}

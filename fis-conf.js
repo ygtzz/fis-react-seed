@@ -1,12 +1,14 @@
 
 fis.set('project.ignore',['node_modules/**', 'fis-conf.js','component.json','README.md']);
 
+fis.unhook('components')
+fis.hook('node_modules')
 fis.hook('commonjs',{
 	baseUrl:'./widget',
 	extList: ['.js', '.jsx', '.es', '.ts', '.tsx']
 });
 
-fis.match('/{components,widget,pages,redux}/**.{js,jsx,es}', {
+fis.match('/{node_modules,widget,pages,redux}/**.{js,jsx,es}', {
     isMod: true,
     useSameNameRequire:true
 });

@@ -5,18 +5,10 @@ import service from 'mock/service';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import actions from 'redux/actions';
-import {message} from 'antd';
 
 class List extends Component{
     componentWillReceiveProps(nextProps,nextState) {
-        var oArticle = nextProps.oArticle,
-            oCate = nextProps.oCate;
-        if(oArticle.get('bFetching')){
-            message.loading('loading...',0.2);
-        }
-        else{
-            message.destroy();
-        }
+        
     }
     render() {
         var sType = this.props.type,

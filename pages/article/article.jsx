@@ -1,11 +1,10 @@
 import React,{Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import marked from 'marked';
+import marked from 'marked/marked';
 import Footer from 'footer';
 import service from 'mock/service';
 import actions from 'redux/actions';
-import {message} from 'antd';
 
 class Article extends Component{
     constructor(props){
@@ -27,13 +26,7 @@ class Article extends Component{
         actions.fGetArticleDetail(id);	
     }
     fLoading(nextProps){
-        const oArticle = nextProps.oArticle;
-        if(oArticle.get('bFetching')){
-            message.loading('loading...',0.2);
-        }
-        else{
-            message.destroy();
-        }    
+        
     }
     render() {
         const oArticle = this.props.oArticle;

@@ -1,17 +1,19 @@
 import oActionType from 'action-type';
-import {createAction} from 'redux-actions'
+import {createAction} from 'redux-actions';
+import {fGetArticleDetailRequest,fGetArticleDetailOk} from './reducers/article.es';
 
-const fGetArticleDetailRequest = createAction(oActionType['getArticleDetail.request'],(articleId) => {
-    return ({
-        articleId: articleId
-    })
-});
+// const fGetArticleDetailRequest = fCreateAction(oActionType['getArticleDetail.request'],(articleId) => {
+//     return ({
+//         articleId: articleId
+//     })
+// });
 
-const fGetArticleDetailOk = createAction(oActionType['getArticleDetail.ok'],(articleId) => {
-    return ({
-        articleId: articleId
-    })
-});
+// const fGetArticleDetailOk = fCreateAction(oActionType['getArticleDetail.ok'],(articleId) => {
+//     return ({
+//         articleId: articleId
+//     })
+// });
+
 
 function fGetArticleDetailAsync(articleId) {
     return function(dispatch) {

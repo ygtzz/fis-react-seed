@@ -12,23 +12,21 @@ class Article extends Component{
     }
     componentWillMount(){
         console.log('article mount');
-       	this.fAction(this.props);	
-        this.fLoading(this.props);
+       	this.fAction(this.props);
     }
     componentWillReceiveProps(nextProps,nextState) {
         console.log('article receive');
-       	this.fAction(nextProps);	
-        this.fLoading(nextProps);
+        if(nextProps.params.id !== this.props.params.id){
+       	    this.fAction(nextProps);            
+        }
     }
     fAction(props){
 		const id = props.params.id;
         const actions = props.actions;		
         actions.fGetArticleDetail(id);	
     }
-    fLoading(nextProps){
-        
-    }
     render() {
+        console.log('article render');
         const oArticle = this.props.oArticle;
         const article = oArticle.get('data');
         const sArtContent = marked(article.content || '');
@@ -39,7 +37,7 @@ class Article extends Component{
                     <div className="preview">
                         <div className="author-info">
                             <a className="avatar" href="#">
-                                <img thumbnail="90x90" quality="100" src={article.avatar} />
+                                <img data-thumbnail="90x90" data-quality="100" src={article.avatar} />
                             </a>
                             <span className="label">
                                 作者

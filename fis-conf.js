@@ -5,15 +5,15 @@ fis.set('project.ignore',['node_modules/**', 'fis-conf.js','component.json','REA
 fis.unhook('components');
 fis.hook('node_modules');
 fis.hook('commonjs',{
-    baseUrl: './mod',
+    baseUrl: './mods',
 	extList: ['.js', '.jsx', '.es', '.ts', '.tsx']
 });
 
-fis.match('/{node_modules,mod}/**.{js,jsx,es}', {
+fis.match('/{node_modules,mods}/**.{js,jsx,es}', {
     isMod: true
 });
 
-fis.match('/mod/**.{js,jsx,es}', {
+fis.match('/mods/**.{js,jsx,es}', {
     useSameNameRequire:true
 });
 
@@ -40,16 +40,16 @@ fis.match('*.{js,jsx,ts,tsx,es}', {
     ]
 });
 
-fis.match('**',{
+fis.match('mods/**',{
     release: '/static/$0'
 });
 
-fis.match("pages/index/(*.html)",{
+fis.match("mods/pages/index/(*.html)",{
     release: '/$1',
     useCache : false
 });
 
-fis.match("/static/(**)",{
+fis.match("static/(**)",{
     release: '/static/$1'
 });
 
@@ -91,15 +91,15 @@ fis.media('prod')
                 "node_modules/react-router-redux/lib/index.js:deps",
             ],
             'pkg/npm.js': [
-                'mod/pages/index/index.jsx:deps',
+                'mods/pages/index/index.jsx:deps',
                 '!mod/**'
             ],
             'pkg/index.js': [
-                'mod/pages/index/index.jsx',
-                'mod/pages/index/index.jsx:deps'
+                'mods/pages/index/index.jsx',
+                'mods/pages/index/index.jsx:deps'
             ],
             'pkg/index.css': [
-                'mod/pages/index/index.jsx:deps'
+                'mods/pages/index/index.jsx:deps'
             ]
         })
     });

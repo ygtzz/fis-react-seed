@@ -1,7 +1,8 @@
 import oActionType from '../action-type';
 import service from 'mock/service';
 import Immutable from 'immutable';
-import { handleActions } from 'redux-actions';
+import {createReducer} from 'redux-act';
+import actions from '../actions';
 
 const oState = Immutable.fromJS({
     oCate: {
@@ -16,65 +17,65 @@ const oState = Immutable.fromJS({
     }
 });
 
-const fTrendReducer = handleActions({
-    [oActionType['getCateList.request']]:(state,action) => {
+const fTrendReducer = createReducer({
+    [actions.fGetCateListRequest]:(state,payload) => {
         let s = state.updateIn(['oCate', 'bFetching'], function(bFetching) {
                 return true;
             });
         return s;
     },
-    [oActionType['getCateList.ok']]:(state,action) => {
+    [actions.fGetCateListOk]:(state,payload) => {
        let s = state.updateIn(['oCate', 'bFetching'], function(bFetching) {
                 return false;
             });
             s = state.updateIn(['oCate', 'data'], function(data) {
-                return fGetCateList(action.payload.sType,action.payload.sCate);
+                return fGetCateList(payload.sType,payload.sCate);
             });
         return s;
     },
-    [oActionType['getCateList.error']]:(state,action) => {
+    ['actions.error']:(state,payload) => {
        let s = state.updateIn(['oCate', 'bError'], function(bError) {
                 return true;
             });
        return s;
     },
-    [oActionType['getArticleList.request']]:(state,action) => {
+    [actions.fGetArticleListRequest]:(state,payload) => {
         let s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return true;
             });
         return s;
     },
-    [oActionType['getArticleList.ok']]:(state,action) => {
+    [actions.fGetArticleListOk]:(state,payload) => {
        let s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return false;
             });
             s = state.updateIn(['oArticle', 'data'], function(data) {
-                return fGetArticleList(action.payload.sType,action.payload.sCate);
+                return fGetArticleList(payload.sType,payload.sCate);
             });
         return s;
     },
-    [oActionType['getArticleList.error']]:(state,action) => {
+    [oActionType['getArticleList.error']]:(state,payload) => {
        let s = state.updateIn(['oArticle', 'bError'], function(bError) {
                 return true;
             });
        return s;
     },
-    [oActionType['searchArticles.request']]:(state,action) => {
+    [actions.fSearchArticlesRequest]:(state,payload) => {
         let s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return true;
             });
         return s;
     },
-    [oActionType['searchArticles.ok']]:(state,action) => {
+    [actions.fSearchArticlesOk]:(state,payload) => {
        let s = state.updateIn(['oArticle', 'bFetching'], function(bFetching) {
                 return false;
             });
             s = state.updateIn(['oArticle', 'data'], function(data) {
-                return fSearchArticles(action.payload.sKeyword);
+                return fSearchArticles(payload.sKeyword);
             });
         return s;
     },
-    [oActionType['searchArticles.error']]:(state,action) => {
+    [oActionType['searchArticles.error']]:(state,payload) => {
        let s = state.updateIn(['oArticle', 'bError'], function(bError) {
                 return true;
             });

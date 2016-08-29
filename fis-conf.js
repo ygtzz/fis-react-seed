@@ -71,7 +71,7 @@ fis.media('prod')
         useHash:true,
         useSprite:true
     })
-    .match('**.js',{
+    .match('**.{js,es,jsx}',{
         optimizer: fis.plugin('uglify-js'),         
         useHash:true
     })
@@ -79,31 +79,24 @@ fis.media('prod')
     	optimizer: fis.plugin('png-compressor')
   	})
     .match('node_modules/**',{
-        optimizer: null,
         useHash: false
     })
-    // .match('/widget/**.{css,scss}', {
-    //     packTo: '/static/widget/widget.css'
-    // })
-    // .match('/widget/(**).{js,jsx}', {
-    //     packTo: '/static/widget/widget.js'
-    // })
-    // .match('/pages/(**)/(*).{css,scss}', {
-    //     packTo:'/static/pages/page.css'
-    // })
-    // .match('/pages/(**)/(*).{js,jsx}', {
-    //     packTo:'/static/pages/page.js'
-    // });
     .match('::package', {
         packager: fis.plugin('deps-pack', {
-            'pkg/react.js': [
-                'node_modules/react/dist/react.min.js',
-                'node_modules/react-dom/dist/react-dom.min.js'
+            'pkg/react.all.js':[
+                "node_modules/react/react.js:deps",
+                "node_modules/react-dom/index.js:deps",
+                "node_modules/react-router/lib/index.js:deps",
+                "node_modules/react-redux/lib/index.js:deps",
+                "node_modules/react-router-redux/lib/index.js:deps",
+            ],
+            'pkg/npm.js': [
+                'mod/pages/index/index.jsx:deps',
+                '!mod/**'
             ],
             'pkg/index.js': [
                 'mod/pages/index/index.jsx',
-                'mod/pages/index/index.jsx:deps',
-                '!react:deps'
+                'mod/pages/index/index.jsx:deps'
             ],
             'pkg/index.css': [
                 'mod/pages/index/index.jsx:deps'

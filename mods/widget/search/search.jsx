@@ -5,6 +5,10 @@ import {connect} from 'react-redux';
 import actions from 'redux/actions';
 
 class Search extends Component{
+	constructor(props){
+		super(props);
+		this.fSearch = this.fSearch.bind(this);
+	}
 	fSearch(evt){
 		console.log(Date.now());
 		this.props.actions.fSearchArticles(evt.target.value);
@@ -17,7 +21,7 @@ class Search extends Component{
 				<DebounceInput
           			minLength={1}
           			debounceTimeout={300}
-          			onChange={this.fSearch.bind(this)} 
+          			onChange={this.fSearch} 
           			className="input-medium search-query" 
           			name="q" id="q" placeholder="搜索" />
 			</div>

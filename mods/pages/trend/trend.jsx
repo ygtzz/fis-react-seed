@@ -13,7 +13,10 @@ class Trend extends Component{
     }
     componentWillReceiveProps(nextProps,nextState) {
         console.log('trend componentWillReceiveProps');
-       	this.fAction(nextProps);
+        if(nextProps.params.type !== this.props.params.type || 
+           nextProps.params.cate !== this.props.params.cate){
+       	    this.fAction(nextProps);
+        }
     }
     fAction(props){
         const type = props.params.type;

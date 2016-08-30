@@ -1,8 +1,8 @@
 import {createAction} from 'redux-act';
 
-const fGetArticleDetailRequest = createAction();
+const fGetArticleDetailRequest = createAction('fGetArticleDetailRequest');
 
-const fGetArticleDetailOk = createAction(articleId => ({articleId}) );
+const fGetArticleDetailOk = createAction('fGetArticleDetailOk',articleId => ({articleId}) );
 
 function fGetArticleDetailAsync(articleId) {
     return function(dispatch) {
@@ -13,9 +13,9 @@ function fGetArticleDetailAsync(articleId) {
     }
 }
 
-const fGetCateListRequest = createAction();
+const fGetCateListRequest = createAction('fGetCateListRequest');
 
-const fGetCateListOk = createAction((sType,sCate) => ({
+const fGetCateListOk = createAction('fGetCateListOk',(sType,sCate) => ({
         sType: sType,
         sCate: sCate
     })
@@ -30,9 +30,9 @@ function fGetCateListAsync(sType,sCate) {
     }
 }
 
-const fGetArticleListRequest = createAction();
+const fGetArticleListRequest = createAction('fGetArticleListRequest');
 
-const fGetArticleListOk = createAction((sType,sCate) =>  ({
+const fGetArticleListOk = createAction('fGetArticleListOk',(sType,sCate) =>  ({
         sType: sType,
         sCate: sCate
     })
@@ -47,9 +47,9 @@ function fGetArticleListAsync(sType,sCate) {
     }
 }
 
-const fSearchArticlesRequest = createAction();
+const fSearchArticlesRequest = createAction('fSearchArticlesRequest');
 
-const fSearchArticlesOk = createAction((sKeyword) => ({sKeyword}) );
+const fSearchArticlesOk = createAction('fSearchArticlesOk',(sKeyword) => ({sKeyword}) );
 
 function fSearchArticlesAsync(sKeyword) {
     return function(dispatch) {

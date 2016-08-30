@@ -3,9 +3,6 @@ import ReactDom from 'react-dom';
 import {Router,Route,IndexRoute,IndexRedirect,hashHistory} from 'react-router';
 import {Provider} from 'react-redux';
 import {syncHistoryWithStore} from 'react-router-redux';
-import Trend from 'pages/trend/trend';
-import Article from 'pages/article/article';
-import Home from 'pages/home/home';
 import store from 'redux/store';
 
 const history = syncHistoryWithStore(hashHistory,store);
@@ -24,8 +21,20 @@ ReactDom.render(
 	<Provider store={store}>
 		<Router history={history}>
 			<Route path="/" component={App}>
-				<Route path="/p/:id" component={Article}/>
-				<Route path="/:type/:cate" component={Trend}/>
+				<Route path="/p/:id" getComponent={
+					(location,cb) => {
+						require(['pages/article/article'],function(com){
+							cb(null,com);
+						});
+					}
+				} />
+				<Route path="/:type/:cate" getComponent={
+					(location,cb) => {
+						require(['pages/trend/trend'],function(com){
+							cb(null,com);
+						});
+					}
+				} />
 			</Route>
 		</Router>
   	</Provider>,

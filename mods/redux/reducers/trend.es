@@ -1,4 +1,3 @@
-import oActionType from '../action-type';
 import service from 'mock/service';
 import Immutable from 'immutable';
 import {createReducer} from 'redux-act';
@@ -33,7 +32,7 @@ const fTrendReducer = createReducer({
             });
         return s;
     },
-    ['actions.error']:(state,payload) => {
+    ['getCateListOk.error']:(state,payload) => {
        let s = state.updateIn(['oCate', 'bError'], function(bError) {
                 return true;
             });
@@ -54,7 +53,7 @@ const fTrendReducer = createReducer({
             });
         return s;
     },
-    [oActionType['getArticleList.error']]:(state,payload) => {
+    ['getArticleList.error']:(state,payload) => {
        let s = state.updateIn(['oArticle', 'bError'], function(bError) {
                 return true;
             });
@@ -75,7 +74,7 @@ const fTrendReducer = createReducer({
             });
         return s;
     },
-    [oActionType['searchArticles.error']]:(state,payload) => {
+    ['searchArticles.error']:(state,payload) => {
        let s = state.updateIn(['oArticle', 'bError'], function(bError) {
                 return true;
             });

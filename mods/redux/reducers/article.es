@@ -1,4 +1,3 @@
-import oActionType from '../action-type';
 import service from 'mock/service';
 import Immutable from 'immutable';
 import {createReducer} from 'redux-act';

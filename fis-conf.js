@@ -2,19 +2,25 @@
 fis.set('project.ignore',['node_modules/**', 'fis-conf.js','component.json','README.md']);
 //fis.set('project.files', 'mod/pages/index/index.html'); // 按需编译
 
+var sModPath = 'client/mods';
+
 fis.unhook('components');
 fis.hook('node_modules');
 fis.hook('commonjs',{
-    baseUrl: './mods',
+    baseUrl: sModPath,
 	extList: ['.js', '.jsx', '.es', '.ts', '.tsx']
 });
 
-fis.match('/{node_modules,mods}/**.{js,jsx,es}', {
+fis.match('/{node_modules,' + sModPath + '}/**.{js,jsx,es}', {
     isMod: true
 });
 
-fis.match('/mods/**.{js,jsx,es}', {
+fis.match(sModPath + '/**.{js,jsx,es}', {
     useSameNameRequire:true
+});
+
+fis.match('client/static/(**)',{
+    release: '/static/$1'
 });
 
 fis.match('**.scss', {
@@ -40,17 +46,9 @@ fis.match('*.{js,jsx,ts,tsx,es}', {
     ]
 });
 
-fis.match('mods/**',{
-    release: '/static/$0'
-});
-
-fis.match("mods/pages/index/(*.html)",{
+fis.match(sModPath + "/pages/index/(*.html)",{
     release: '/$1',
     useCache : false
-});
-
-fis.match("static/(**)",{
-    release: '/static/$1'
 });
 
 fis.match('::package', {
@@ -59,11 +57,6 @@ fis.match('::package', {
         useInlineMap: true
     })
 });
-
-fis.set('baseUrl','http://cdn.com');
-fis.set('cssPath',fis.get('baseUrl') + '/css/xpromt/efmp');
-fis.set('jsPath',fis.get('baseUrl') + '/js/xpromt/efmp');
-fis.set('imgPath',fis.get('baseUrl') + '/images/xpromt/efmp');
 
 fis.media('prod')
     .match('**.{css,scss}', {
@@ -91,15 +84,31 @@ fis.media('prod')
                 "node_modules/react-router-redux/lib/index.js:deps",
             ],
             'pkg/npm.js': [
-                'mods/pages/index/index.jsx:deps',
-                '!mod/**'
+                sModPath + '/pages/index/index.jsx:deps',
+                sModPath + '/pages/trend/trend.jsx:deps',                                
+                sModPath + '/pages/atricle/atricle.jsx:deps',
+                '!' + sModPath + '/**'
             ],
             'pkg/index.js': [
-                'mods/pages/index/index.jsx',
-                'mods/pages/index/index.jsx:deps'
+                sModPath + '/pages/index/index.jsx',
+                sModPath + '/pages/index/index.jsx:deps'
             ],
             'pkg/index.css': [
-                'mods/pages/index/index.jsx:deps'
+                sModPath + '/pages/index/index.jsx:deps'
+            ],
+            'pkg/trend.js': [
+                sModPath + '/pages/trend/trend.jsx',
+                sModPath + '/pages/trend/trend.jsx:deps'
+            ],
+            'pkg/trend.css': [
+                sModPath + '/pages/trend/trend.jsx:deps'
+            ],
+            'pkg/article.js': [
+                sModPath + '/pages/article/article.jsx',
+                sModPath + '/pages/article/article.jsx:deps'
+            ],
+            'pkg/article.css': [
+                sModPath + '/pages/article/article.jsx:deps'
             ]
         })
     });

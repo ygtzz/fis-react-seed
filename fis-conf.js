@@ -77,6 +77,11 @@ fis.media('prod')
     .match('::package', {
         packager: fis.plugin('deps-pack', {
             'pkg/react.all.js':[
+                // "node_modules/react/dist/react.min.js",
+                // "node_modules/react-dom/dist/react-dom.min.js",
+                // "node_modules/react-router/umd/ReactRouter.min.js",
+                // "node_modules/react-redux/dist/react-redux.min.js",
+                // "node_modules/react-router-redux/dist/ReactRouterRedux.min.js",
                 "node_modules/react/react.js:deps",
                 "node_modules/react-dom/index.js:deps",
                 "node_modules/react-router/lib/index.js:deps",

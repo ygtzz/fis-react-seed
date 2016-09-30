@@ -6,6 +6,9 @@
 * redux
 * redux-act
 * redux-thunk
+* es6
+* babel
+* fis3
 
 ###开始
 
